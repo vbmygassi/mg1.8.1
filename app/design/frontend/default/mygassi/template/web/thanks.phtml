@@ -1,0 +1,99 @@
+<?php
+/*
+ this page exists for that each product is to be reached by its URL
+	-> http://192.168.178.27/m/web/prod/index/xtreme-boots-2er-set-xxl-schwarz.html
+	as we use "fancy UI" responsive templates; this page really is for search engines only
+	and then newsletter and such; for direct links to the product
+	this page links the cart
+	this page links the product list
+ */
+
+
+print <<<EOD
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8"/>
+<link type="text/css" rel="stylesheet" href="http://fast.fonts.com/cssapi/172401d0-6f03-4532-984f-0a7abe7d2fc2.css"/>
+<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet"/>
+
+EOD;
+
+$src = $this->getSkinUrl() . "css/shop.css";
+print <<<EOD
+<link rel="stylesheet" type="text/css" href="{$src}">
+
+EOD;
+
+$src = Mage::getBaseURL() . "js/jquery/jquery-2.0.0.min.js";
+print <<<EOD
+<script src="{$src}" type="text/javascript"></script>
+
+<script type="text/javascript">
+jQuery(document).ready(function(){
+	jQuery(window).resize(function(){
+		resize();
+	});
+	resize();
+});
+resize = function(){
+	jQuery(".prodimg").attr("width", parseInt(jQuery(".featured_product_image").width()));
+	if(false){
+	}
+	else if(jQuery(".featured_product_image").width() > 800){
+		jQuery(".featured_product_name").css("font-size", 34 +"px");	
+		jQuery(".featured_product_price_and_shipping a").css("font-size", 24 +"px");	
+		jQuery(".featured_product_description_bla").css("font-size", 24 +"px");	
+		jQuery(".featured_product_buy_now_button_bla").css("font-size", 32 +"px");	
+	}		
+	else if(jQuery(".featured_product_image").width() > 700){
+		jQuery(".featured_product_name").css("font-size", 30 +"px");	
+		jQuery(".featured_product_price_and_shipping a").css("font-size", 20 +"px");	
+		jQuery(".featured_product_description_bla").css("font-size", 20 +"px");	
+		jQuery(".featured_product_buy_now_button_bla").css("font-size", 28 +"px");	
+	}
+	else if(jQuery(".featured_product_image").width() > 600){
+		jQuery(".featured_product_name").css("font-size", 32 +"px");	
+		jQuery(".featured_product_price_and_shipping a").css("font-size", 16 +"px");	
+		jQuery(".featured_product_description_bla").css("font-size", 16 +"px");	
+		jQuery(".featured_product_buy_now_button_bla").css("font-size", 24 +"px");	
+	}
+	else if(jQuery(".featured_product_image").width() > 500){
+		jQuery(".featured_product_name").css("font-size", 28 +"px");	
+		jQuery(".featured_product_price_and_shipping a").css("font-size", 14 +"px");	
+		jQuery(".featured_product_description_bla").css("font-size", 14 +"px");	
+		jQuery(".featured_product_buy_now_button_bla").css("font-size", 20 +"px");	
+	}
+	jQuery(".prodimg").attr("width", parseInt(jQuery(".featured_product_image").width()));
+
+};
+</script>
+
+</head>
+<body>
+<center>
+
+EOD;
+
+print Mage::getSingleton("core/layout")->createBlock("core/template")->setTemplate("web/head.phtml")->toHtml();
+print Mage::getSingleton("core/layout")->createBlock("core/template")->setTemplate("web/shopping-cart.phtml")->toHtml();
+print Mage::getSingleton("core/layout")->createBlock("core/template")->setTemplate("web/title.phtml")->toHtml();
+
+print <<<EOD
+<div class="thanks">
+<span class="title">Vielen Dank,</span>
+<br/>
+<span class="bla">gerne bearbeiten wir Ihre Bestellung.</span>
+</div>
+
+EOD;
+
+print Mage::getSingleton("core/layout")->createBlock("core/template")->setTemplate("web/foot.phtml")->toHtml();
+
+print <<<EOD
+
+</center>
+</body>
+</html>
+
+EOD;

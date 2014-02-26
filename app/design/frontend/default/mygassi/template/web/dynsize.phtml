@@ -1,0 +1,62 @@
+<?php
+
+print <<<EOD
+<script type="text/javascript">
+
+jQuery(document).ready(function(){
+	jQuery(window).resize(function(){
+		resize();
+	});
+	resize();
+});
+
+resize = function()
+{	
+	jQuery(".prodimg").attr("width", parseInt(jQuery(".featured_product_image").width()));
+	
+	// evaluates current width
+	w = jQuery(".featured_product_image").width();
+	w = jQuery(".shop_title").width();
+	if(834 < w){ w = 834; }
+	if(300 > w){ w = 300; }
+	
+	// evaluates ratio
+	p = w /(834 /100);
+
+	// sets ratios
+	s = 32 /100 *p;
+	jQuery(".featured_product_name").css("font-size", s +"px");	
+	jQuery(".cart_title").css("font-size", s +"px");	
+	jQuery(".checkout_title").css("font-size", s +"px");	
+	jQuery(".featured_product_buy_now_button_bla").css("font-size", s +"px");	
+	jQuery(".cart_buy_button span a").css("font-size", s +"px");	
+	jQuery(".summary_title").css("font-size", s +"px");	
+
+	s = 24 /100 * p;
+	jQuery(".featured_product_price_and_shipping a").css("font-size", s +"px");	
+	jQuery(".featured_product_description_bla").css("font-size", s +"px");	
+	jQuery(".header").css("font-size", s +"px");	
+	jQuery(".footer").css("font-size", s +"px");	
+	jQuery(".header a").css("margin-right", s +"px");	
+	jQuery(".checkout_description").css("font-size", s +"px");	
+	
+	s = 250 /100 *p;
+	jQuery(".logo").css("width", s +"px");	
+	
+	s = 40 /100 *p;
+	jQuery(".shop_title").css("font-size", s +"px");	
+
+	s = 150 /100 *p;
+	jQuery(".footerlogo").css("width", s +"px");	
+
+}
+
+</script>
+EOD;
+
+
+
+
+
+
+?>

@@ -1,0 +1,292 @@
+<?php
+$cem = Mage::getSingleton("customer/session")->getCouponErrorMessage();
+$csm = Mage::getSingleton("customer/session")->getCouponSuccessMessage();
+
+
+
+print <<<EOD
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8"/> 
+<link type="text/css" rel="stylesheet" href="http://fast.fonts.com/cssapi/172401d0-6f03-4532-984f-0a7abe7d2fc2.css"/>
+<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet"/>
+
+EOD;
+
+$src = $this->getSkinUrl() . "css/shop.css";
+print <<<EOD
+<link rel="stylesheet" type="text/css" href="{$src}">
+
+EOD;
+
+$src = Mage::getBaseURL() . "js/jquery/jquery-2.0.0.min.js";
+print <<<EOD
+<script src="{$src}" type="text/javascript"></script>
+
+EOD;
+
+print Mage::getSingleton("core/layout")->createBlock("core/template")->setTemplate("web/dynsize.phtml")->toHtml();
+
+print <<<EOD
+</head>
+<body>
+<center>
+
+EOD;
+
+print Mage::getSingleton("core/layout")->createBlock("core/template")->setTemplate("web/head.phtml")->toHtml();
+print Mage::getSingleton("core/layout")->createBlock("core/template")->setTemplate("web/shopping-cart.phtml")->toHtml();
+print Mage::getSingleton("core/layout")->createBlock("core/template")->setTemplate("web/title.phtml")->toHtml();
+
+// renders page title
+print <<<EOD
+
+<!-- title //-->
+<div class="summary_title">Zusammenfassung</div>
+
+EOD;
+
+
+print <<<EOD
+<!-- cart items //-->
+<div class="cart_item">
+
+EOD;
+
+// renders items from the cart
+$items = Mage::getModel("checkout/cart")->getItems();
+foreach($items as $index=>$item){
+	
+	$name = htmlspecialchars($item["name"]);
+	$price = Mage::helper("core")->currency($item["price_incl_tax"]);
+	$row_total = Mage::helper("core")->currency($item["row_total_incl_tax"]);
+	$uvp = Mage::helper("core")->currency($item["old_price"]);
+	$qty = $item["qty"];
+
+	print <<<EOD
+	<!-- cart item //-->
+	<div class="cart_item_w">
+		<div><span>{$name}</span></div>
+		<div><span>{$price}</span></div>
+		<div><span>x&nbsp;{$qty}</span></div>
+		<div><span>{$row_total}</span></div>
+		<!-- <div><input type="button" value="Entfernen"></div> -->
+	</div>
+EOD;
+	
+}
+
+
+
+print <<<EOD
+<div class="vspacer"></div>
+</div><!-- cart items //-->
+
+EOD;
+
+// evaluates shipping method 
+$shippingMethod = Mage::helper("checkout/cart")->getCart()->getQuote()->getShippingAddress()->getShippingMethod();
+
+// evaluates shipping costs html
+$shippingCostsHTML = Mage::helper("core")->currency(2.95);
+if("freeshipping_freeshipping" == $shippingMethod){
+	$shippingCostsHTML = Mage::helper("core")->currency(0.00);
+}
+
+// renders shipping costs
+print <<<EOD
+<!-- Shipping Methods //-->
+<div class="shipping_costs">
+	<div class="shipping_costs_w">
+		<div class="shipping_costs_title"><span>Versandkosten:</span></div>		
+		<div class="shipping_costs_amount"><span>{$shippingCostsHTML}</span></div>		
+	</div>
+</div>
+
+EOD;
+
+
+
+
+
+
+
+
+
+
+
+
+$rHTML = "";
+$appliedRuleIds = Mage::getModel("checkout/cart")->getQuote()->getShippingAddress()->getAppliedRuleIds();
+$appliedRuleIds = explode(",", $appliedRuleIds);
+if(1 < count($appliedRuleIds)){
+	foreach($appliedRuleIds as $id){
+		$name = Mage::getModel("salesrule/rule")->load($id)->getName();
+		$rHTML .= '<div class="">'.$name.'</div>';
+	
+	}
+}
+else {
+	$name = Mage::getModel("salesrule/rule")->load($appliedRuleIds)->getName();
+	$rHTML .= '<div class="">'.$name.'</div>';
+}
+
+
+
+
+$total = Mage::getSingleton("checkout/cart")->getQuote()->getGrandTotal();
+$totalHTML = Mage::helper("core")->currency($total);
+print <<<EOD
+<!-- Summary Count //-->
+<div class="summary_count">
+	<div class="summary_count_w">
+		<div class="summary_count_title"><span>Gesamt:</span></div>		
+		{$rHTML}
+		<div class="summary_count_total"><span>{$totalHTML}</span></div>		
+	</div>
+</div>
+
+EOD;
+
+
+
+
+
+
+
+if(1 < strlen($cem)){
+	print <<<EOD
+<!-- Coupon Code Error //-->
+<div class="error">
+<div class="errorw">
+	<span>{$cem}</span>
+</div>
+</div>
+
+EOD;
+	Mage::getSingleton("customer/session")->setCouponErrorMessage("");
+
+}
+
+
+
+
+
+
+
+if(1 < strlen($csm)){
+	print <<<EOD
+<!-- Coupon Code Success //-->
+<div class="success">
+<div class="successw">
+	<span>{$csm}</span>
+</div>
+</div>
+
+EOD;
+	Mage::getSingleton("customer/session")->setCouponSuccessMessage("");
+}
+
+
+
+
+
+
+
+
+
+
+$url = Mage::getBaseUrl() . "web/coupon/";
+print <<<EOD
+<!-- Coupon //-->
+<form method="POST" action="{$url}">
+<div class="coupon">
+	<div class="couponw">
+		<div class="coupon_title"><span>Hier können Sie Ihren Rabatt-Gutschein einlösen:</span></div>		
+		<div class="coupon_input"><input id="coupon_code" name="user_coupon_code" type="text"/></div>		
+		<div class="coupun_submit"><input type="submit" value="Senden"/></div>
+	</div>
+</div>
+</form>
+
+EOD;
+
+
+
+
+
+
+
+
+
+
+
+
+// evaluates payment url
+$paymentURL = Mage::getBaseUrl() . "web/pay";
+
+// renders payment types
+print <<<EOD
+<!-- Payment Types //-->
+<form method="POST" action="{$paymentURL}">
+<div class="payment_type">
+	<div class="payment_type_w">
+		<div class="payment_type_title"><span>Zahlarten</span></div>
+		<div class="payment_type_select">
+			<input 
+				type="radio" 
+				name="payment_type" 
+				id="checkmo" 
+				value="checkmo"
+				checked
+			/>
+			<label for="checkmo">Überweisung</label>
+		</div>
+		<div class="payment_type_select">
+			<input 
+				type="radio" 
+				name="payment_type" 
+				id="payone_online_bank_transfer" 
+				value="payone_online_bank_transfer"
+			/>
+			<label for="payone_online_bank_transfer">Sofortüberweisung</label>
+		</div>
+		<div class="payment_type_select">
+			<input 
+				type="radio" 
+				name="payment_type" 
+				id="payone_wallet" 
+				value="payone_wallet"
+			/>
+			<label for="payone_wallet">Paypal</label>
+		</div>
+	</div><!-- payment type w //-->
+</div><!-- payment type //-->
+<div class="featured_product_buy_now_button">
+	<div class="featured_product_buy_now_button_bla">
+		<input type="button" onclick="submit()" value="Bezahlen"></input>
+	</div>
+</div>
+</form>
+
+EOD;
+
+print Mage::getSingleton("core/layout")->createBlock("core/template")->setTemplate("web/foot.phtml")->toHtml();
+
+print <<<EOD
+
+</center>
+</body>
+</html>
+
+EOD;
+
+
+
+
+
+
+
+
+?>

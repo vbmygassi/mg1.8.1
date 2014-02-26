@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+	<modules>
+		<Mygassi_Webshop>
+			<active>true</active>
+			<codePool>local</codePool>
+		</Mygassi_Webshop>
+	</modules>
+</config>      

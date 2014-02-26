@@ -1,0 +1,29 @@
+<config>
+	<modules>
+		<Mygassi_Webshop>
+			<version>0.1.0</version>
+		</Mygassi_Webshop>
+	</modules>
+	<frontend>
+		<routers>
+			<web>
+				<use>standard</use>
+				<args>
+					<module>Mygassi_Webshop</module>
+					<frontName>web</frontName>
+				</args>
+			</web>
+		</routers>
+	</frontend>
+	<global>
+		<models>
+			<web>
+				<class>Mygassi_Webshop_Model</class>
+				<resourceModel>webshop_resource</resourceModel>
+			</web>
+			<web_resource>
+				<class>Mygassi_Webshop_Model_Resource</class>
+			</web_resource>
+		</models>
+	</global>
+</config>

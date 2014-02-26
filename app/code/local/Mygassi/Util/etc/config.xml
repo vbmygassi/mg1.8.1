@@ -1,0 +1,33 @@
+<config>
+
+	<modules>
+		<Mygassi_Util>
+			<version>0.1.0</version>
+		</Mygassi_Util>
+	</modules>
+
+	<frontend>
+		<routers>
+			<util>
+				<use>standard</use>
+				<args>
+					<module>Mygassi_Util</module>
+					<frontName>util</frontName>
+				</args>
+			</util>
+		</routers>
+	</frontend>
+
+	<global>
+		<models>
+			<util>
+				<class>Mygassi_Util_Model</class>
+				<resourceModel>util_resource</resourceModel>
+			</util>
+			<util_resource>
+				<class>Mygassi_Util_Model_Resource</class>
+			</util_resource>
+		</models>
+	</global>
+	
+</config>

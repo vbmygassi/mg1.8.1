@@ -1,0 +1,7 @@
+app/etc/local.xml
+app/etc/config.xml
+downloader/
+errors/
+media/
+temp/
+var/

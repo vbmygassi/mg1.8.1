@@ -1,0 +1,21 @@
+<?php
+
+$src = $this->getSkinUrl() . "images/cart-default.png";
+$lnk = Mage::getBaseUrl() . "web/cart/";
+
+$cart = Mage::getSingleton("checkout/cart");
+$cart->init();
+$n = $cart->getItemsCount();
+if(0 == $n){ $n = ""; }
+
+print <<<EOD
+<!-- shopping-cart //-->
+<div class="shopping-cart">
+	<a href="{$lnk}"><img src="{$src}"/></a>
+	<span class="shopping_cart_count">{$n}</span>
+</div>
+
+EOD;
+
+
+?>

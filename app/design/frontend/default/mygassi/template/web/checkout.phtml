@@ -1,0 +1,192 @@
+<?php
+// fetches post values reg
+$post = Mage::getSingleton("core/session")->getRegInput();
+
+// very important prefills post values
+$post["user_firstname"] = $post["user_firstname"] == "" ? "Vorname" : $post["user_firstname"];
+$post["user_lastname"] = $post["user_lastname"] == "" ? "Nachname" : $post["user_lastname"];
+$post["user_pass_1"] = $post["user_pass_1"] == "" ? "Password1" : $post["user_pass_1"];
+$post["user_pass_2"] = $post["user_pass_2"] == "" ? "Password2" : $post["user_pass_2"];
+$post["user_email"] = $post["user_email"] == "" ? "Email" : $post["user_email"];
+$post["user_telephone"] = $post["user_telephone"] == "" ? "Telephone" : $post["user_telephone"];
+$post["user_mobile"] = $post["user_mobile"] == "" ? "Mobiltelefon" : $post["user_mobile"];
+$post["user_email"] = $post["user_email"] == "" ? "Email" : $post["user_email"];
+$post["user_street"] = $post["user_street"] == "" ? "Strasse" : $post["user_street"];
+$post["user_str_nr"] = $post["user_str_nr"] == "" ? "Hausnummer" : $post["user_str_nr"];
+$post["user_city"] = $post["user_city"] == "" ? "Stadt" : $post["user_city"];
+$post["user_zip"] = $post["user_zip"] == "" ? "Postleitzahl" : $post["user_zip"];
+$post["user_country"] = $post["user_country"] == "" ? "DE" : $post["user_country"];
+$post["user_pass"] = $post["user_pass"] == "" ? "Password" : $post["user_pass"];
+$post["user_region_id"] = $post["user_region_id"] == "" ? "81" : $post["user_region_id"];
+$post["user_region"] = $post["user_region"] == "" ? "Bayern" : $post["user_region"];
+
+print <<<EOD
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8"/>
+<link type="text/css" rel="stylesheet" href="http://fast.fonts.com/cssapi/172401d0-6f03-4532-984f-0a7abe7d2fc2.css"/>
+<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet"/>
+
+EOD;
+
+$src = $this->getSkinUrl() . "css/shop.css";
+print <<<EOD
+<link rel="stylesheet" type="text/css" href="{$src}">
+
+EOD;
+
+$src = Mage::getBaseURL() . "js/jquery/jquery-2.0.0.min.js";
+print <<<EOD
+<script src="{$src}" type="text/javascript"></script>
+
+EOD;
+
+print Mage::getSingleton("core/layout")->createBlock("core/template")->setTemplate("web/dynsize.phtml")->toHtml();
+
+print <<<EOD
+<script type="text/javascript">
+
+jQuery(document).ready(function(e){ CP.initL(e); });
+
+// BEGIN ComputerProgram
+CP = {
+	initL: function(e)
+	{
+		jQuery("#login_email").change(function(e){ CP.vEmail(e); });
+		jQuery("#login_email").click(function(e){ CP.vEmail(e); });
+		jQuery("#login_email").keyup(function(e){ CP.vEmail(e); });
+		
+		jQuery("#login_pass").change(function(e){ CP.vPass(e); });
+		jQuery("#login_pass").click(function(e){ CP.vPass(e); });
+		jQuery("#login_pass").keyup(function(e){ CP.vPass(e); });
+		
+		CP.vEmail({target: "#login_email"});
+		CP.vPass({target: "#login_pass"});
+		
+		CP.toggleLoginButton();
+	},
+
+	vPassValid: false,
+	vPass: function(e)
+	{
+		t = jQuery(e.target);
+		if(8 > t.val().length){
+			CP.vPassValid = false;
+			CP.showInputError(t, "Das Passwort ist nicht gültig.");
+		}
+		else {
+			CP.vPassValid = true;
+			CP.showInputOK(t);
+		}
+		CP.toggleLoginButton();
+	},
+
+	vEmailValid: false,	
+	vEmail: function(e)
+	{
+		t = jQuery(e.target);
+		expr = new RegExp(/^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/);
+		
+		if(false == expr.test(t.val())){
+			CP.vEmailValid = false;
+			CP.showInputError(t, "Die Email ist nicht gültig.");
+		}
+		else {
+			CP.vEmailValid = true;
+			CP.showInputOK(t);
+		}
+		CP.toggleLoginButton();
+	},
+
+	showInputError: function(t, message)
+	{
+		t.css("border-color", "red");
+	},
+
+	showInputOK: function(t)
+	{
+		t.css("border-color", "#57a200");
+	},
+
+	toggleLoginButton: function()
+	{
+		jQuery("#login_submit").attr("disabled", "disabled");
+		if(CP.vEmailValid){
+			if(CP.vPassValid){
+				jQuery("#login_submit").removeAttr("disabled");
+			}
+		}
+	},
+}
+// ComputerProgram END
+
+</script>
+
+</head>
+<body>
+<center>
+
+EOD;
+
+print Mage::getSingleton("core/layout")->createBlock("core/template")->setTemplate("web/head.phtml")->toHtml();
+print Mage::getSingleton("core/layout")->createBlock("core/template")->setTemplate("web/shopping-cart.phtml")->toHtml();
+print Mage::getSingleton("core/layout")->createBlock("core/template")->setTemplate("web/title.phtml")->toHtml();
+print Mage::getSingleton("core/layout")->createBlock("core/template")->setTemplate("web/error.phtml")->toHtml();
+
+$loginURL = Mage::getBaseUrl() . "web/login";
+print <<<EOD
+<!-- login //-->
+<form method="POST" action="{$loginURL}">
+<div class="checkout_login">
+<div class="checkout_title">Sie sind bereits Kunde der MyGassi GmbH?</div>
+<div class="checkout_description">Bitte loggen Sie sich ein:</div>
+<div class="checkout_name"><input id="login_email" type="text" name="user_email" value="{$post["user_email"]}"/></div>
+<div class="checkout_pass"><input id="login_pass" type="password" name="user_pass" value="{$post["user_pass"]}"></div>
+<div class="checkout_login_submit"><input id="login_submit" type="submit" value="Senden"/></div>
+</div>
+</form>
+
+EOD;
+
+$regURL = Mage::getBaseUrl() . "web/register/";
+$guestURL = Mage::getBaseUrl() . "web/guest/";
+
+print <<<EOD
+<!-- register //-->
+
+<div class="checkout_register">
+	<div class="checkout_title">Sie sind noch kein MyGassi Kunde?</div>
+	<div class="checkout_description">Registrieren Sie sich für mehr Komfort bei Ihrem nächsten Besuch:</div>
+	<div class="checkout_description"><a href="{$guestURL}">&gt; Als Gast zur Kasse gehen</a></div>
+	<div class="checkout_description"><a href="{$regURL}">&gt; Registrieren</a></div>
+</div>
+
+EOD;
+
+print Mage::getSingleton("core/layout")->createBlock("core/template")->setTemplate("web/foot.phtml")->toHtml();
+
+print <<<EOD
+
+</center>
+</body>
+</html>
+
+EOD;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+?>

@@ -1,0 +1,378 @@
+<?php
+// fetches post values reg
+$post = Mage::getSingleton("core/session")->getRegInput();
+
+// very important prefills post values
+$post["user_firstname"] = $post["user_firstname"] == "" ? "Vorname" : $post["user_firstname"];
+$post["user_lastname"] = $post["user_lastname"] == "" ? "Nachname" : $post["user_lastname"];
+$post["user_email"] = $post["user_email"] == "" ? "Email" : $post["user_email"];
+$post["user_telephone"] = $post["user_telephone"] == "" ? "Telephone" : $post["user_telephone"];
+$post["user_mobile"] = $post["user_mobile"] == "" ? "Mobiltelefon" : $post["user_mobile"];
+$post["user_email"] = $post["user_email"] == "" ? "Email" : $post["user_email"];
+$post["user_street"] = $post["user_street"] == "" ? "Strasse" : $post["user_street"];
+$post["user_str_nr"] = $post["user_str_nr"] == "" ? "Hausnummer" : $post["user_str_nr"];
+$post["user_city"] = $post["user_city"] == "" ? "Stadt" : $post["user_city"];
+$post["user_zip"] = $post["user_zip"] == "" ? "Postleitzahl" : $post["user_zip"];
+$post["user_country"] = $post["user_country"] == "" ? "DE" : $post["user_country"];
+$post["user_pass"] = $post["user_pass"] == "" ? "Password" : $post["user_pass"];
+$post["user_region_id"] = $post["user_region_id"] == "" ? "81" : $post["user_region_id"];
+$post["user_region"] = $post["user_region"] == "" ? "Bayern" : $post["user_region"];
+
+print <<<EOD
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8"/>
+<link type="text/css" rel="stylesheet" href="http://fast.fonts.com/cssapi/172401d0-6f03-4532-984f-0a7abe7d2fc2.css"/>
+<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet"/>
+
+EOD;
+
+$src = $this->getSkinUrl() . "css/shop.css";
+print <<<EOD
+<link rel="stylesheet" type="text/css" href="{$src}">
+
+EOD;
+
+$src = Mage::getBaseURL() . "js/jquery/jquery-2.0.0.min.js";
+print <<<EOD
+<script src="{$src}" type="text/javascript"></script>
+
+EOD;
+
+print Mage::getSingleton("core/layout")->createBlock("core/template")->setTemplate("web/dynsize.phtml")->toHtml();
+
+print <<<EOD
+<script type="text/javascript">
+
+jQuery(document).ready(function(e){ CP.initR(e); });
+
+// BEGIN ComputerProgram
+CP = {
+
+	initR: function(e)
+	{
+		jQuery("#register_firstname").change(function(e){ CP.vFirstname(e); });
+		jQuery("#register_firstname").click(function(e){ CP.vFirstname(e); });
+		jQuery("#register_firstname").keyup(function(e){ CP.vFirstname(e); });
+		jQuery("#register_lastname").change(function(e){ CP.vLastname(e); });
+		jQuery("#register_lastname").click(function(e){ CP.vLastname(e); });
+		jQuery("#register_lastname").keyup(function(e){ CP.vLastname(e); });
+		jQuery("#register_email").change(function(e){ CP.vEmail(e); });
+		jQuery("#register_email").click(function(e){ CP.vEmail(e); });
+		jQuery("#register_email").keyup(function(e){ CP.vEmail(e); });
+		jQuery("#register_telephone").change(function(e){ CP.vTelephone(e); });
+		jQuery("#register_telephone").click(function(e){ CP.vTelephone(e); });
+		jQuery("#register_telephone").keyup(function(e){ CP.vTelephone(e); });
+		jQuery("#register_mobile").change(function(e){ CP.vMobile(e); });
+		jQuery("#register_mobile").click(function(e){ CP.vMobile(e); });
+		jQuery("#register_mobile").keyup(function(e){ CP.vMobile(e); });
+		
+		jQuery("#register_street").change(function(e){ CP.vStreet(e); });
+		jQuery("#register_street").click(function(e){ CP.vStreet(e); });
+		jQuery("#register_street").keyup(function(e){ CP.vStreet(e); });
+		
+		jQuery("#register_str_nr").change(function(e){ CP.vStreetNr(e); });
+		jQuery("#register_str_nr").click(function(e){ CP.vStreetNr(e); });
+		jQuery("#register_str_nr").keyup(function(e){ CP.vStreetNr(e); });
+		jQuery("#register_city").change(function(e){ CP.vCity(e); });
+		jQuery("#register_city").click(function(e){ CP.vCity(e); });
+		jQuery("#register_city").keyup(function(e){ CP.vCity(e); });
+		jQuery("#register_zip").change(function(e){ CP.vZip(e); });
+		jQuery("#register_zip").click(function(e){ CP.vZip(e); });
+		jQuery("#register_zip").keyup(function(e){ CP.vZip(e); });
+		jQuery("#register_country").change(function(e){ CP.vCountry(e); });
+		jQuery("#register_country").click(function(e){ CP.vCountry(e); });
+		jQuery("#register_country").keyup(function(e){ CP.vCountry(e); });
+		
+		CP.vFirstname({target: "#register_firstname"});
+		CP.vLastname({target: "#register_lastname"});
+		CP.vEmail({target: "#register_email"});
+		CP.vTelephone({target: "#register_telephone"});
+		CP.vMobile({target: "#register_mobile"});
+		CP.vStreet({target: "#register_street"});
+		CP.vStreetNr({target: "#register_str_nr"});
+		CP.vCity({target: "#register_city"});
+		CP.vZip({target: "#register_zip"});
+		CP.vCountry({target: "#register_country"});
+	},
+
+	vEmailValid: false,	
+	vEmail: function(e)
+	{
+		t = jQuery(e.target);
+		expr = new RegExp(/^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/);
+		if(false == expr.test(t.val())){
+			CP.vEmailValid = false;
+			CP.showInputError(t, "Die Email ist nicht gültig.");
+		}
+		else {
+			CP.vEmailValid = true;
+			CP.showInputOK(t);
+		}
+		CP.toggleRegisterButton();
+	},
+
+	vCountryValid: false,
+	vCountry: function(e)
+	{
+		t = jQuery(e.target);
+		if(2 > t.val().length){
+			CP.vCountryValid = false;
+			CP.showInputError(t, "Die Landeskennung ist nicht gültig.");
+		}	
+		else {
+			CP.vCountryValid = true;
+			CP.showInputOK(t);
+		}
+
+		CP.toggleRegisterButton();
+	},
+	
+	vZipValid: false,
+	vZip: function(e)
+	{
+		t = jQuery(e.target);
+		if(2 > t.val().length){
+			CP.vZipValid = false;
+			CP.showInputError(t, "Die Postleitzahl ist nicht gültig.");
+		}
+		else {
+			CP.vZipValid = true;
+			CP.showInputOK(t);
+		}
+		
+		CP.toggleRegisterButton();
+	},
+	
+	vCityValid: false,
+	vCity: function(e)
+	{
+		t = jQuery(e.target);
+		if(2 > t.val().length){
+			CP.vCityValid = false;
+			CP.showInputError(t, "Die Stadt ist nicht gültig.");
+		}
+		else {
+			CP.vCityValid = true;
+			CP.showInputOK(t);
+		}
+
+		CP.toggleRegisterButton();
+	},
+	
+	vStreetNrValid: false,
+	vStreetNr: function(e)
+	{
+		t = jQuery(e.target);
+		if(2 > t.val().length){
+			CP.vStreetNrValid = false;
+			CP.showInputError(t, "Die Hausnummer ist nicht gültig.");
+		}
+		else {
+			CP.vStreetNrValid = true;
+			CP.showInputOK(t);
+		}
+
+		CP.toggleRegisterButton();
+	},
+		
+	vStreetValid: false,
+	vStreet: function(e)
+	{
+		t = jQuery(e.target);
+		if(4 > t.val().length){
+			CP.vStreetValid = false;
+			CP.showInputError(t, "Die Strasse ist nicht gültig.");	
+		}
+		else {
+			CP.vStreetValid = true;
+			CP.showInputOK(t);
+		}
+
+		CP.toggleRegisterButton();
+	},
+	
+	vTelephoneValid: false,
+	vTelephone: function(e)
+	{
+		t = jQuery(e.target);
+		
+		strval = t.val();
+		strval = strval.replace("(", "");
+		strval = strval.replace(")", "");
+		strval = strval.replace("/", "");
+		strval = strval.replace("+", "");
+		strval = strval.replace("-", "");
+		strval = strval.replace(".", "");
+		
+		expr = new RegExp(/^\d+$/);
+		if(false == expr.test(strval) ||6 > strval.length){
+			CP.vTelephoneValid = false;
+			CP.showInputError(t, "Die Telefonnummer ist nicht gültig.");
+		}
+		else{
+			CP.vTelephoneValid = true; 
+			CP.showInputOK(t);
+		}
+		
+		CP.toggleRegisterButton();
+	},
+
+	vMobileValid: false,
+	vMobile: function(e)
+	{
+		t = jQuery(e.target);
+		
+		strval = t.val();
+		strval = strval.replace("(", "");
+		strval = strval.replace(")", "");
+		strval = strval.replace("/", "");
+		strval = strval.replace("+", "");
+		strval = strval.replace("-", "");
+		strval = strval.replace(".", "");
+		expr = new RegExp(/^\d+$/);
+		if(false == expr.test(strval) ||6 > strval.length){
+			CP.vMobileValid = false;
+			CP.showInputError(t, "Die Mobilnummer ist nicht gültig.");
+		}
+		else{
+			CP.vMobileValid = true; 
+			CP.showInputOK(t);
+		}
+		
+		CP.toggleRegisterButton();
+	},
+	
+	vFirstnameValid: false,
+	vFirstname: function(e)
+	{
+		t = jQuery(e.target);
+		
+		if(4 > t.val().length){ 
+			CP.vFirstnameValid = false;
+			CP.showInputError(t);
+		}
+		else {
+			CP.vFirstnameValid = true; 
+			CP.showInputOK(t, "Der Vorname ist nicht gültig.");
+		}
+		
+		CP.toggleRegisterButton();
+	},
+
+	vLastnameValid: false,
+	vLastname: function(e)
+	{
+		t = jQuery(e.target);
+		
+		if(4 > t.val().length){
+			CP.vLastnameValid = false;
+			CP.showInputError(t, "Der Nachname ist nicht gültig.");
+		}
+		else {
+			CP.vLastnameValid = true;
+			CP.showInputOK(t);
+		}
+		
+		CP.toggleRegisterButton();
+	},
+
+	toggleRegisterButton: function()
+	{
+		jQuery("#register_submit").attr("disabled", "disabled");
+		
+		if(
+			CP.vFirstnameValid &&
+			CP.vLastnameValid && 
+			CP.vEmailValid &&
+			CP.vTelephoneValid && 
+			CP.vMobileValid && 
+			CP.vStreetValid &&
+			CP.vStreetNrValid && 
+			CP.vCityValid && 
+			CP.vZipValid &&
+			CP.vCountryValid
+		){
+			jQuery("#register_submit").removeAttr("disabled");
+		}
+	},
+
+	showInputError: function(t, message)
+	{
+		t.css("border-color", "red");
+	},
+
+	showInputOK: function(t)
+	{
+		t.css("border-color", "#57a200");
+	}
+}
+// ComputerProgram END
+
+</script>
+
+</head>
+<body>
+<center>
+
+EOD;
+
+print Mage::getSingleton("core/layout")->createBlock("core/template")->setTemplate("web/head.phtml")->toHtml();
+print Mage::getSingleton("core/layout")->createBlock("core/template")->setTemplate("web/shopping-cart.phtml")->toHtml();
+print Mage::getSingleton("core/layout")->createBlock("core/template")->setTemplate("web/title.phtml")->toHtml();
+print Mage::getSingleton("core/layout")->createBlock("core/template")->setTemplate("web/error.phtml")->toHtml();
+
+$postURL = Mage::getBaseUrl() . "web/guest/reg/";
+print <<<EOD
+<!-- register //-->
+<form method="POST" action="{$postURL}"> 
+
+<div class="checkout_register">
+<div class="checkout_title">Sie sind noch kein MyGassi Kunde?</div>
+<div class="checkout_description">Sie können als Gast einkaufen:</div>
+<div class="checkout_name"><input id="register_firstname" type="text" name="user_firstname" value="{$post["user_firstname"]}"/></div>
+<div class="checkout_name"><input id="register_lastname" type="text" name="user_lastname" value="{$post["user_lastname"]}"/></div>
+<div class="checkout_name"><input id="register_email" type="text" name="user_email" value="{$post["user_email"]}"/></div>
+<div class="checkout_name"><input id="register_telephone" type="text" name="user_telephone" value="{$post["user_telephone"]}"/></div>
+<div class="checkout_name"><input id="register_mobile" type="text" name="user_mobile" value="{$post["user_mobile"]}"/></div>
+<div class="checkout_name"><input id="register_street" type="text" name="user_street" value="{$post["user_street"]}"/></div>
+<div class="checkout_name"><input id="register_str_nr" type="text" name="user_str_nr" value="{$post["user_str_nr"]}"/></div>
+<div class="checkout_name"><input id="register_city" type="text" name="user_city" value="{$post["user_city"]}"/></div>
+<div class="checkout_name"><input id="register_zip" type="text" name="user_zip" value="{$post["user_zip"]}"/></div>
+<div class="checkout_name"><input id="register_country" type="text" name="user_country" value="{$post["user_country"]}"/></div>
+<input type="hidden" name="user_region_id" value="81"/>
+<input type="hidden" name="user_region" value="Bayern"/>
+<div class="checkout_register_submit"><input id="register_submit" type="submit" value="Als Gast zur Kasse gehen"/></div>
+
+</div>
+</form>
+
+EOD;
+
+print Mage::getSingleton("core/layout")->createBlock("core/template")->setTemplate("web/foot.phtml")->toHtml();
+
+print <<<EOD
+
+</center>
+</body>
+</html>
+
+EOD;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+?>

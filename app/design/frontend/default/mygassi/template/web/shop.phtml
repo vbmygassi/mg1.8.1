@@ -1,0 +1,133 @@
+<?php
+/*
+ 
+ a shop "around" the shop 
+	implemented as a module
+	since we cannot "move"
+		the default magento checkout 
+		since it is in "use"
+	by the iphone app
+
+ this is the entry point of the page
+	this page will use responsive odd bull designs :: i guess
+	this page links the cart
+
+
+ to do: 
+	gesamtsumme
+	payment gateway {analog zum premium shohp}
+	rabatte
+	designwünsce umsetzen		
+ */
+
+print <<<EOD
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8"/>
+<link type="text/css" rel="stylesheet" href="http://fast.fonts.com/cssapi/172401d0-6f03-4532-984f-0a7abe7d2fc2.css"/>
+<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet"/>
+
+EOD;
+
+$src = Mage::getBaseURL() . "js/jquery/jquery-2.0.0.min.js";
+
+print <<<EOD
+<script src="{$src}" type="text/javascript"></script>
+
+EOD;
+
+$src = $this->getSkinUrl() . "css/shop.css";
+
+print <<<EOD
+<link rel="stylesheet" type="text/css" href="{$src}">
+
+EOD;
+
+print Mage::getSingleton("core/layout")->createBlock("core/template")->setTemplate("web/dynsize.phtml")->toHtml();
+
+print <<<EOD
+
+</head>
+<body>
+<center>
+
+EOD;
+
+print Mage::getSingleton("core/layout")->createBlock("core/template")->setTemplate("web/head.phtml")->toHtml();
+print Mage::getSingleton("core/layout")->createBlock("core/template")->setTemplate("web/shopping-cart.phtml")->toHtml();
+print Mage::getSingleton("core/layout")->createBlock("core/template")->setTemplate("web/title.phtml")->toHtml();
+
+// selects products
+$coll = Mage::getModel("catalog/product")->getCollection()->addAttributeToFilter("appears_on_the_internez", true)->load();
+
+// lists selected products
+foreach($coll as $prod){
+	
+	$prod = $prod->load($prod->getId());
+	$name = htmlspecialchars($prod->getName());
+	$description = htmlspecialchars($prod->getDescription());
+	$price = Mage::helper("core")->currency($prod->getPrice());
+	
+	$src = "";
+	foreach($prod->getMediaGalleryImages() as $image){
+		$path = Mage::helper("catalog/image")
+			->init($prod, "thumbnail", $image->getFile())
+			->keepFrame(false)
+			->resize(640);
+		
+		if("the1st" === $image->getLabel()){ 
+			$src = (string)$path;
+		}
+	} 
+	
+	$urlPath = $prod->getUrlPath();
+	$prodURL = Mage::getBaseUrl() . "web/prod/index/" . $urlPath;	
+	$cartURL = Mage::helper("checkout/cart")->getAddUrl($prod);
+
+	$pricesHTML = "";
+
+	$op = $prod->getOldPrice();
+
+	if(1 < $op){
+		$uvp = Mage::helper("core")->currency($prod->getOldPrice());
+		$pricesHTML .= '<span class="price_label_uvp">'.$uvp.'</span>';
+		$pricesHTML .= '<span class="price_label_default">&nbsp;&nbsp;'.$price.'</span>';
+	}
+	else{
+		$pricesHTML .= '<span class="price_label_default">'.$price.'</span>';
+	}
+
+	$p = $prod->getPrice();
+	$shippingHTML = "Versandkosten: 2,95 €";
+	if($p >= 19){
+		$shippingHTML = "Kostenloser Versand";
+	}
+	
+	$description = $prod->getDescription();
+
+	// renders products of the page 
+	print <<<EOD
+<!-- featured product //-->
+<div class="featured_product_name"><a href="{$prodURL}">{$name}</a></div>
+<div class="featured_product_image"><a href="{$prodURL}"><img class="prodimg" src="{$src}"/></a></div>
+<div class="featured_product_price_and_shipping">
+	<div class="featured_product_price"><a href="{$prodURL}">{$pricesHTML}</a></div>
+	<div class="featured_product_shipping"><a href="{$prodURL}">{$shippingHTML}</a></div>
+</div>
+<div class="featured_product_buy_now_button"><div class="featured_product_buy_now_button_bla"><a href="{$prodURL}">Jetzt kaufen</a></div></div>
+<div class="featured_product_bottom"></div>
+
+EOD;
+
+}
+
+print Mage::getSingleton("core/layout")->createBlock("core/template")->setTemplate("web/foot.phtml")->toHtml();
+
+print <<<EOD
+
+</center>
+</body>
+</html>
+
+EOD;

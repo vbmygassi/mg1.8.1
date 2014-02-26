@@ -1,0 +1,33 @@
+<config>
+
+	<modules>
+		<Mygassi_Premium>
+			<version>0.1.0</version>
+		</Mygassi_Premium>
+	</modules>
+
+	<frontend>
+		<routers>
+			<premium>
+				<use>standard</use>
+				<args>
+					<module>Mygassi_Premium</module>
+					<frontName>premium</frontName>
+				</args>
+			</premium>
+		</routers>
+	</frontend>
+
+	<global>
+		<models>
+			<premium>
+				<class>Mygassi_Premium_Model</class>
+				<resourceModel>premium_resource</resourceModel>
+			</premium>
+			<premium_resource>
+				<class>Mygassi_Premium_Model_Resource</class>
+			</premium_resource>
+		</models>
+	</global>
+	
+</config>

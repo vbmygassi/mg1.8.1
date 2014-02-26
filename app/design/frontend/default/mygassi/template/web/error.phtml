@@ -1,0 +1,38 @@
+<?php
+
+$errorMessage = Mage::getSingleton("core/session")->getErrorMessage();
+
+
+
+
+
+
+
+if(1 < strlen($errorMessage)){
+
+print <<<EOD
+
+<div class="error">
+	<div class="errorw">
+		<span>{$errorMessage}</span>
+	</div>
+</div>
+
+EOD;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+?>

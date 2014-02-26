@@ -1,0 +1,62 @@
+-- MySQL dump 10.14  Distrib 5.5.31-MariaDB, for osx10.8 (i386)
+--
+-- Host: localhost    Database: m
+-- ------------------------------------------------------
+-- Server version	5.5.31-MariaDB-log
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `customer_address_entity_datetime`
+--
+
+DROP TABLE IF EXISTS `customer_address_entity_datetime`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `customer_address_entity_datetime` (
+  `value_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Value Id',
+  `entity_type_id` smallint(5) unsigned NOT NULL DEFAULT '0' COMMENT 'Entity Type Id',
+  `attribute_id` smallint(5) unsigned NOT NULL DEFAULT '0' COMMENT 'Attribute Id',
+  `entity_id` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'Entity Id',
+  `value` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT 'Value',
+  PRIMARY KEY (`value_id`),
+  UNIQUE KEY `UNQ_CUSTOMER_ADDRESS_ENTITY_DATETIME_ENTITY_ID_ATTRIBUTE_ID` (`entity_id`,`attribute_id`),
+  KEY `IDX_CUSTOMER_ADDRESS_ENTITY_DATETIME_ENTITY_TYPE_ID` (`entity_type_id`),
+  KEY `IDX_CUSTOMER_ADDRESS_ENTITY_DATETIME_ATTRIBUTE_ID` (`attribute_id`),
+  KEY `IDX_CUSTOMER_ADDRESS_ENTITY_DATETIME_ENTITY_ID` (`entity_id`),
+  KEY `IDX_CSTR_ADDR_ENTT_DTIME_ENTT_ID_ATTR_ID_VAL` (`entity_id`,`attribute_id`,`value`),
+  CONSTRAINT `FK_CSTR_ADDR_ENTT_DTIME_ATTR_ID_EAV_ATTR_ATTR_ID` FOREIGN KEY (`attribute_id`) REFERENCES `eav_attribute` (`attribute_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `FK_CSTR_ADDR_ENTT_DTIME_ENTT_ID_CSTR_ADDR_ENTT_ENTT_ID` FOREIGN KEY (`entity_id`) REFERENCES `customer_address_entity` (`entity_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `FK_CSTR_ADDR_ENTT_DTIME_ENTT_TYPE_ID_EAV_ENTT_TYPE_ENTT_TYPE_ID` FOREIGN KEY (`entity_type_id`) REFERENCES `eav_entity_type` (`entity_type_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=70 DEFAULT CHARSET=utf8 COMMENT='Customer Address Entity Datetime';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `customer_address_entity_datetime`
+--
+
+LOCK TABLES `customer_address_entity_datetime` WRITE;
+/*!40000 ALTER TABLE `customer_address_entity_datetime` DISABLE KEYS */;
+INSERT INTO `customer_address_entity_datetime` VALUES (24,2,989,25,'0000-00-00 00:00:00'),(25,2,989,26,'0000-00-00 00:00:00'),(26,2,989,27,'0000-00-00 00:00:00'),(35,2,989,36,'0000-00-00 00:00:00'),(36,2,989,37,'0000-00-00 00:00:00'),(37,2,989,38,'0000-00-00 00:00:00'),(38,2,989,39,'0000-00-00 00:00:00'),(43,2,989,44,'0000-00-00 00:00:00'),(56,2,989,57,'0000-00-00 00:00:00'),(58,2,989,59,'0000-00-00 00:00:00'),(59,2,989,60,'0000-00-00 00:00:00'),(60,2,989,61,'0000-00-00 00:00:00'),(61,2,989,62,'0000-00-00 00:00:00'),(62,2,989,63,'0000-00-00 00:00:00'),(63,2,989,64,'0000-00-00 00:00:00'),(64,2,989,65,'0000-00-00 00:00:00'),(65,2,989,66,'0000-00-00 00:00:00'),(66,2,989,67,'0000-00-00 00:00:00'),(67,2,989,68,'0000-00-00 00:00:00'),(69,2,989,164,'0000-00-00 00:00:00');
+/*!40000 ALTER TABLE `customer_address_entity_datetime` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2014-02-21 16:18:37

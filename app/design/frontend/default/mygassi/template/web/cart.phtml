@@ -1,0 +1,159 @@
+<?php
+
+
+
+
+print <<<EOD
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8"/> 
+<link type="text/css" rel="stylesheet" href="http://fast.fonts.com/cssapi/172401d0-6f03-4532-984f-0a7abe7d2fc2.css"/>
+<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet"/>
+
+
+EOD;
+
+
+
+
+
+
+
+
+
+
+$src = $this->getSkinUrl() . "css/shop.css";
+
+print <<<EOD
+<link rel="stylesheet" type="text/css" href="{$src}">
+
+EOD;
+
+
+
+
+
+
+
+
+
+
+
+
+
+$src = Mage::getBaseURL() . "js/jquery/jquery-2.0.0.min.js";
+print <<<EOD
+<script src="{$src}" type="text/javascript"></script>
+
+EOD;
+
+print Mage::getSingleton("core/layout")->createBlock("core/template")->setTemplate("web/dynsize.phtml")->toHtml();
+
+print <<<EOD
+
+</head>
+<body>
+<center>
+
+EOD;
+
+print Mage::getSingleton("core/layout")->createBlock("core/template")->setTemplate("web/head.phtml")->toHtml();
+print Mage::getSingleton("core/layout")->createBlock("core/template")->setTemplate("web/shopping-cart.phtml")->toHtml();
+print Mage::getSingleton("core/layout")->createBlock("core/template")->setTemplate("web/title.phtml")->toHtml();
+
+print <<<EOD
+<div class="cart_title">Ihr Warenkorb</div>
+
+EOD;
+
+print <<<EOD
+<!-- cart items //-->
+<div class="cart_item">
+
+EOD;
+
+$items = Mage::getModel("checkout/cart")
+	->getItems();
+foreach($items as $index=>$item){
+	
+	// print_r($item->debug());
+	$name = htmlspecialchars($item["name"]);
+	$price = Mage::helper("core")->currency($item["price_incl_tax"]);
+	$row_total = Mage::helper("core")->currency($item["row_total_incl_tax"]);
+	$uvp = Mage::helper("core")->currency($item["old_price"]);
+	$qty = $item["qty"];
+
+
+	// loads product image
+	$src = "";
+	$prod = Mage::getModel("catalog/product")->loadByAttribute("sku", $item->getSku());
+	$prod = $prod->load($prod->getId());
+	foreach($prod->getMediaGalleryImages() as $image){
+		$path = Mage::helper("catalog/image")->init($prod, "thumbnail", $image->getFile())->keepFrame(false)->resize(640);
+		if("the1st" === $image->getLabel()){ 
+			$src = (string)$path;
+		}
+	} 
+
+	print <<<EOD
+
+	<!-- cart item //-->
+	<div class="cart_item_w">
+		<div><span>{$name}</span></div>
+		<div>
+			<img class="prod_cart_image" src="{$src}"/>
+			<span>{$price}</span>
+			<span>x&nbsp;{$qty}</span>
+			<span>{$row_total}</span>
+		</div>
+		<!--
+		<div><span>{$price}</span></div>
+		<div><span>x&nbsp;{$qty}</span></div>
+		<div><span>{$row_total}</span></div>
+		//-->
+		<!-- <div><input type="button" value="Entfernen"></div> -->
+	</div><!-- cart item //-->
+
+EOD;
+
+}
+
+print <<<EOD
+<div class="vspacer"></div>
+</div><!-- cart items //-->
+EOD;
+
+$buyURL = Mage::getBaseUrl() . "web/checkout/";
+print <<<EOD
+<div class="cart_buy_button"><span><a href="{$buyURL}">Ware kaufen</a></span></div>
+
+EOD;
+
+
+print Mage::getSingleton("core/layout")
+	->createBlock("core/template")
+	->setTemplate("web/foot.phtml")
+	->toHtml();
+
+print <<<EOD
+
+</center>
+</body>
+</html>
+
+EOD;
+
+
+
+
+
+
+
+
+
+
+
+
+
+?>
