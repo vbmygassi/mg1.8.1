@@ -32,33 +32,20 @@
  */
 ?>
 
+<?php
 
-
-
-
-
-
-
-
-<div class="std">
-	<div class="header_slider_wrap">
-		<div class="header_slider">
-
-
-
-
-<!-- <script src="http://livedemo00.template-help.com/magento_47179/skin/frontend/default/theme210k/js/camera.js" type="text/javascript"></script> -->
-
-
-
+	/*
+	Diese Swastikascheisse ist Bestandteil des "Theme"s und funktioniert bis dato nicht.
+	Gibt dem Typen einfach Geld.
+	*/
+?>
 <?php /**
-<?php $fuckyourface = $this->getSkinUrl() . "js/camera.js"; ?>
-<script src="<?php print $fuckyourface?>" type="text/javascript"></script>
-
+<?php $src = $this->getSkinUrl() . "js/camera.js"; ?>
+<script src="<?php print $src?>" type="text/javascript"></script>
 <script type="text/javascript">
    jQuery(function(){
    jQuery('#camera_wrap').camera({
-   alignmen: 'topCenter',
+   alignment: 'topCenter',
    height: '54.296%',
    minHeight: '134px',
    loader : false,
@@ -67,170 +54,54 @@
    navigationHover:false,
    thumbnails: false,
    playPause: false 
-   });
-   });    
+   })
+});
 </script>
 **/ ?>
 
+<?php /**
+
+In anderer Leute CSS-Scheisse herumwühlen, weil das "muss".
+**/ ?>
 
 
-
-			<div class="fluid_container">
-
-				<div id="camera_wrap" class="camera_wrap camera_orange_skin" style="display: block; margin-bottom: 0px; height: 336px;">
-					
-					<div class="camera_fakehover"><div class="camera_src camerastarted">
-						<!--
-						<div data-link="advantage-flea.html" data-src="http://livedemo00.template-help.com/magento_47179/skin/frontend/default/theme210k/images/slider_pic1.jpg"></div>
-						<div data-link="advantix-k9.html" data-src="http://livedemo00.template-help.com/magento_47179/skin/frontend/default/theme210k/images/slider_pic2.jpg"></div>
-						<div data-link="dog-house.html" data-src="http://livedemo00.template-help.com/magento_47179/skin/frontend/default/theme210k/images/slider_pic3.jpg"></div>
-						-->
-					</div>
-					
-					<div class="camera_target">
-						<div class="cameraCont">
-							<div class="cameraSlide cameraSlide_0" style="visibility: visible; display: none; z-index: 1;">
-								<img width="768" height="417" src="http://livedemo00.template-help.com/magento_47179/skin/frontend/default/theme210k/images/slider_pic1.jpg?1393418710715" class="imgLoaded" style="visibility: visible; height: 336px; margin-left: -0.410072px; margin-top: 0px; position: absolute; width: 618.82px;" data-alignment="" data-portrait="">
-								<div class="camerarelative" style="width: 618px; height: 336px;"></div>
-						</div>
-						<div class="cameraSlide cameraSlide_1 cameracurrent" style="display: block; z-index: 999;">
-								<img width="768" height="417" src="http://livedemo00.template-help.com/magento_47179/skin/frontend/default/theme210k/images/slider_pic2.jpg?1393418711120" class="imgLoaded" style="visibility: visible; height: 336px; margin-left: -0.410072px; margin-top: 0px; position: absolute; width: 618.82px;" data-alignment="" data-portrait="">
-								<div class="camerarelative" style="width: 618px; height: 336px;"></div>
-						</div>
-						<div class="cameraSlide cameraSlide_2 cameranext" style="display: none; z-index: 1;">
-								<img width="768" height="417" src="http://livedemo00.template-help.com/magento_47179/skin/frontend/default/theme210k/images/slider_pic3.jpg?1393418721497" class="imgLoaded" style="visibility: visible; height: 336px; margin-left: -0.410072px; margin-top: 0px; position: absolute; width: 618.82px;" data-alignment="" data-portrait="">
-								<div class="camerarelative" style="width: 618px; height: 336px;"></div>
-						</div>
-						<div class="cameraSlide cameraSlide_3 cameranext" style="z-index: 1; display: none;">
-							<div class="camerarelative" style="width: 618px; height: 336px;"></div>
-						</div>
-					</div>
+<div class="header_slider_swap">
+	<div class="header_slider">
+		<div class="fluid_container">
+			<div id="camera_wrap">
+				<div class="camera_fakehover"></div>
+				<div class="camera_pag">
+					<img src="http://images4.fanpop.com/image/photos/20500000/Fluttershy-my-little-pony-friendship-is-magic-20524085-570-402.jpg"/>
 				</div>
-
-				<div class="camera_overlayer"></div>
-
-				<div class="camera_target_content">
-					
-					<div class="cameraContents">
-						<div class="cameraContent" style="display: none;">
-						<a target="" href="advantage-flea.html" class="camera_link"></a>
-						<div class="camera_caption fadeFromLeft" style="visibility: hidden; opacity: 1; left: 0px; right: auto;">
-							<div>
-								<div class="right_slider_side sl_1">
-									<h2>SALE</h2>
-									<p>EXTRA LINES JUST ADDED</p>
-									<h3>UP TO 50% OFF</h3>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<div class="cameraContent cameracurrent" style="display: block;">
-						<a target="" href="" class="camera_link"></a>
-						<div class="camera_caption fadeFromLeft" style="visibility: visible; opacity: 1; left: 0px; right: auto;">
-							<div>
-								<div class="right_slider_side sl_2">
-									<h2>SALE</h2>
-									<p>ALL RABBIT HUTCHES &amp; Vitamins</p>
-									<h3>50% OFF</h3>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<div class="cameraContent" style="display: none;">
-						<a target="" href="dog-house.html" class="camera_link"></a>
-						<div class="camera_caption fadeFromLeft" style="visibility: hidden; opacity: 1; left: 0px; right: auto;">
-							<div>
-								<div class="right_slider_side sl_3">
-									<h2>Free Shipping</h2>
-									<h3>On Orders over $99</h3>
-									<p>This Offer is valid on all our store items</p>
-								</div>
-							</div>
-						</div>
-					</div>
+				<div class="camera_loader"></div>
+			</div>
+			<div class="clear"></div>
+		</div>	
+	</div>
+	<div class="banners_col">
+		<div class="banner ban1">
+			<a>
+				<img src="http://livedemo00.template-help.com/magento_47179/skin/frontend/default/theme210k/images/banner1.jpg" width="386" height="172">
+				<div class="ban_holder">
+					<h2>Versandkostenfrei</h2>
+					<p>Lorem ipsum dolor sit amet consectetur <span>&gt;&gt;</span></p>
 				</div>
-			</div>
-
-			<div style="display: none; top: auto; height: 7px;" class="camera_bar">
-				<span class="camera_bar_cont" style="opacity: 0.8; position: absolute; left: 0px; right: 0px; top: 0px; bottom: 0px; background-color: rgb(34, 34, 34);">
-					<span id="pie_0" style="opacity: 0.8; position: absolute; background-color: rgb(238, 238, 238); left: 0px; right: 0px; top: 2px; bottom: 2px; display: block;"></span>
-				</span>
-			</div>
-
+			</a>
 		</div>
-
-		<div class="camera_pag">
-			<ul class="camera_pag_ul">
-				<li style="position:relative; z-index:1002" class="pag_nav_0"><span><span>0</span></span></li>
-				<li style="position:relative; z-index:1002" class="pag_nav_1 cameracurrent"><span><span>1</span></span></li>
-				<li style="position:relative; z-index:1002" class="pag_nav_2"><span><span>2</span></span></li>
-				</ul>
+		<div class="banner ban2">
+			<a>
+				<img src="http://livedemo00.template-help.com/magento_47179/skin/frontend/default/theme210k/images/banner2.jpg" width="386" height="172">
+				<div class="ban_holder">
+					<h2>Rabatte</h2>
+					<p>Lorem ipsum dolor sit amet consectetur <span>&gt;&gt;</span></p>
+				</div>
+			</a>
 		</div>
-
-		<div class="camera_loader" style="display: none; visibility: visible;"></div>
-
 	</div>
-
-	<div class="clear"></div>
-
-</div></div>
-
-
-
-
-
-
-
-
-
-<div class="banners_col">
-	
-	<div class="banner ban1">
-		<a>
-			<img src="http://livedemo00.template-help.com/magento_47179/skin/frontend/default/theme210k/images/banner1.jpg" width="386" height="172">
-			<div class="ban_holder">
-				<h2>Versandkostenfrei</h2>
-				<p>Lorem ipsum dolor sit amet consectetur <span>&gt;&gt;</span></p>
-			</div>
-		</a>
-	</div>
-
-	<div class="banner ban2">
-		<a>
-			<img src="http://livedemo00.template-help.com/magento_47179/skin/frontend/default/theme210k/images/banner2.jpg" width="386" height="172">
-			<div class="ban_holder">
-				<h2>Rabatte</h2>
-				<p>Lorem ipsum dolor sit amet consectetur <span>&gt;&gt;</span></p>
-			</div>
-		</a>
-	</div>
+	<div 
 </div>
 
-</div></div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<div class="cam-clear"></div>
 <div class="page-title"><h1>MyGassi Top Produkte</h1></div>
 
 <?php
@@ -263,13 +134,6 @@ $_productCollection = Mage::getModel("catalog/product")
     <?php foreach ($_productCollection as $_product): ?>
        
 
-
-
-<?php
-
-// $_product = $_product->load($_product->getId());
-
-?>
 
 
 

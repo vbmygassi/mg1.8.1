@@ -3053,3 +3053,8 @@ button.button > span
 	background: none;
 }
 
+.cam-clear 
+{
+	clear: both;
+	padding-bottom: 8em;
+}
