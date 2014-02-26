@@ -32,16 +32,8 @@
  */
 ?>
 <?php
-$_productCollection=$this->getLoadedProductCollection();
-$_helper = $this->helper('catalog/output');
-?>
-
-<?php
-$_productCollection = Mage::getModel("catalog/product")
-	->getCollection()
-	->addAttributeToSelect("*")
-	->addAttributeToFilter("appears_on_the_internez", true)
-	->load();
+    $_productCollection=$this->getLoadedProductCollection();
+    $_helper = $this->helper('catalog/output');
 ?>
 
 <?php if(!$_productCollection->count()): ?>
@@ -59,52 +51,9 @@ $_productCollection = Mage::getModel("catalog/product")
     <?php $_iterator = 0; ?>
     <ol class="products-list" id="products-list">
     <?php foreach ($_productCollection as $_product): ?>
-       
-
-
-
-<?php
-
-// $_product = $_product->load($_product->getId());
-
-?>
-
-
-
-	<li class="item<?php if( ++$_iterator == sizeof($_productCollection) ): ?> last<?php endif; ?>">
-
-
-
-
+        <li class="item<?php if( ++$_iterator == sizeof($_productCollection) ): ?> last<?php endif; ?>">
             <?php // Product Image ?>
             <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" class="product-image"><img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(210); ?>" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" /></a>
-
-
-
-<?php /**
-<?php // Product Image ?>
-<?php 
-
-	$src = "";
-	$_product = $_product->load($_product->getId());
-	foreach($_product->getMediaGalleryImages() as $image){
-		$path = Mage::helper("catalog/image")->init($_product, "thumbnail", $image->getFile())->keepFrame(false)->resize(640);
-		if("the1st" === $image->getLabel()){ 
-			$src = (string)$path;
-		}
-	} 
-?>
-
-            <a 
-		href="<?php echo $_product->getProductUrl() ?>" 
-		title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" 
-		class="product-image"><img 
-			src="<?php echo $src ?>" 
-			alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" /></a>
-**/ ?>
-
-
-
             <?php // Product description ?>
             <div class="product-shop">
                 <div class="f-fix">
