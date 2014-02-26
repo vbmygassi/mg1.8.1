@@ -1464,7 +1464,7 @@ tr.summary-details-excluded { font-style:italic; }
 .product-view .product-shop {float:right;width:61%;}
 .product-view .product-shop .ratings { float:left; margin:0; }
 .product-view .product-shop .ratings .rating-box { float:none; margin:0 0 5px; }
-.col1-layout .product-view .product-shop { float:right; width:700px; }
+.col1-layout .product-view .product-shop { }
 .col3-layout .product-view .product-shop { float:none; width:auto; }
 .product-view .product-name { margin-bottom:12px; }
 .product-view .short-description { margin-bottom:13px; }
@@ -3002,20 +3002,32 @@ button.button > span
 
 { transition: all 0.3s ease 0s; }
 
+/**** ================================================================= 
+      MyGassi Related Funkydub CSS
+ **** ================================================================= **/
+.logo img,
+.paypal-logo img,
+.bottom-wrapper,
+.header-buttons,
+.top-container,
+.language-list,
+.breadcrumbs,
+.toolbar,
+.add-to-links,
+.nav-container,
+.box-tags,
+.links-2,
+.links,
+.cart .shipping,
+.row-product,
+.availability-only
+{
+	visible: hidden;
+	display: none;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+body
+{
+	background-color: #57a200;
+	background: #57a200 url(../images/bg.gif) 50% 0;
+}
