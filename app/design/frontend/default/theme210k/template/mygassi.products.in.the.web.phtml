@@ -32,15 +32,13 @@
  */
 ?>
 
-<?php
-
-	/*
-	Diese Swastikascheisse ist Bestandteil des "Theme"s und funktioniert bis dato nicht.
-	Gibt dem Typen einfach Geld.
-	*/
+<?php 
+$src  = $this->getSkinUrl() . "js/camera.js"; 
+$img0 = $this->getSkinUrl() . "images/logo.gif";
+$img1 = $this->getSkinUrl() . "images/logo.png";
+$img2 = $this->getSkinUrl() . "images/mygassi-logo.png";
 ?>
-<?php /**
-<?php $src = $this->getSkinUrl() . "js/camera.js"; ?>
+
 <script src="<?php print $src?>" type="text/javascript"></script>
 <script type="text/javascript">
    jQuery(function(){
@@ -57,24 +55,44 @@
    })
 });
 </script>
-**/ ?>
-
-<?php /**
-
-In anderer Leute CSS-Scheisse herumwühlen, weil das "muss".
-**/ ?>
-
 
 <div class="header_slider_swap">
 	<div class="header_slider">
 		<div class="fluid_container">
 			<div id="camera_wrap">
-				<div class="camera_fakehover"></div>
-				<div class="camera_pag">
-					<img src="http://images4.fanpop.com/image/photos/20500000/Fluttershy-my-little-pony-friendship-is-magic-20524085-570-402.jpg"/>
+				<!-- Crockett alles klar da drin? Soll ich reinkommen? -->
+				<div data-src="<?php print $img0 ?>" data-link="">
+					<div class="camera_caption fadeFromLeft">
+						<div class="right_slider_side sl_1">
+							<h2>SALE 1</h2>
+							<p>SOME MESSAGE 1</p>
+							<h3>UP TO 10% OFF</h3>
+						</div>
+					</div>
 				</div>
-				<div class="camera_loader"></div>
+				<!-- Vorsicht! Hier drin ist ein Alligator! [ Boaarrghh ] -->
+				<div data-src="<?php print $img1 ?>" data-link="">
+					<div class="camera_caption fadeFromLeft">
+						<div class="right_slider_side sl_1">
+							<h2>SALE 2</h2>
+							<p>SOME MESSAGE 2</p>
+							<h3>UP TO 20% OFF</h3>
+						</div>
+					</div>
+				</div>
+				<!-- Crockett, wirf einfach ein Handtuch drüber! -->
+				<div data-src="<?php print $img2 ?>" data-link="">
+					<div class="camera_caption fadeFromLeft">
+						<div class="right_slider_side sl_1">
+							<h2>SALE 3</h2>
+							<p>SOME MESSAGE 3</p>
+							<h3>UP TO 30% OFF</h3>
+						</div>
+					</div>
+				</div>
 			</div>
+			<div class="camera_pag"></div>
+			<div class="camera_loader"></div> 
 			<div class="clear"></div>
 		</div>	
 	</div>
