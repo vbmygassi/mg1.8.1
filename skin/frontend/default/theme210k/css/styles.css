@@ -3016,6 +3016,39 @@ button.button > span
 
 
 
+.add-to-links,
+.last_block,
+.block-compare,
+.header-buttons,
+.box-tags,
+.links .link-3,
+.welcome-msg,
+.bottom-wrapper,
+.nav-container,
+.toolbar,
+.footer-links-menu .links-2,
+.footer-col-content .links,
+.row-product
+{
+	display: none;
+	visible: hidden;
+}
 
+.top_block .quick-access
+{
+	padding: 0px;
+	padding-top: 11px;
+	float: right;
+}
 
+.top_block .links li
+{
+	padding: 0px;
+}
+
+.top_block .links li.link-4 a,
+.top_block .links li.link-1 a
+{
+	background: none;
+}
 
