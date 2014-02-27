@@ -269,9 +269,9 @@ TestMGProductImport::testReadImportTimestamp();
 
 // TestMGProductImport::testDeleteCategories();
 // TestMGProductImport::testDeleteProducts();
-// TestMGProductImport::testImportItems();
+TestMGProductImport::testImportItems();
 // TestMGProductImport::testCleanImageCache();
-// TestMGProductImport::testImportImages3();
+TestMGProductImport::testImportImages3();
 TestMGProductImport::testActivateImages();
 
 // TestMGProductImport::testSubmitEditedProducts();

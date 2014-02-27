@@ -3023,12 +3023,12 @@ button.button > span
 .box-tags,
 .links .link-3,
 .welcome-msg,
-.bottom-wrapper,
 .nav-container,
 .toolbar,
 .footer-links-menu .links-2,
 .footer-col-content .links,
 .cart .shipping,
+.bottom-wrapper,
 .row-product
 {
 	display: none;
@@ -3057,4 +3057,36 @@ button.button > span
 {
 	clear: both;
 	padding-bottom: 3.5em;
+}
+
+.ban1
+{
+	margin-bottom: 18px;
+}
+
+.camera_loader
+{
+	visible: hidden;
+	display: none;
+}
+
+.karlie-logo
+{
+	margin-left: auto;
+	margin-right: 0px;
+	text-align: right;
+	padding-bottom: 16px;
+}
+
+.header .right_head
+{
+	padding: 0px 0 0;
+}
+
+.paypal-logo
+{
+	margin-top: 12px;
+	margin-bottom: 12px;
+	text-align: right;
+	width: 100%;
 }

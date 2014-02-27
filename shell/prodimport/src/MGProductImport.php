@@ -613,6 +613,13 @@ class MGProductImport
 		// $mprod->setCategoryIds(array(MGProductImport::CATPREFIX . $product->category_ids));
 		$mprod->setCategoryIds($catIds);
 
+		// Sets tax id
+		$ctc = Mage::getModel("tax/class")->getCollection()->addFieldToFilter("class_name", "Taxable Goods")->load()->getFirstItem();
+		$id = $ctc->getClassId();
+
+		// 	
+		$mprod->setTaxClassId($id);
+
 		// Saves product
 		try{ 
 			$mprod->save();
@@ -1246,6 +1253,18 @@ class MGProductImport
 		}	
 	}
 
+	static public function generateUrlKeys()
+	{
+		MGProductImport::initMagento();
+		$coll = Mage::getModel("catalog/product")->getCollection();
+		MGProductImport::log("generateUrlKeys():" . PHP_EOL);
+		foreach($coll as $prod){
+			$prod->load($prod->getId());
+			$prod->setUrlKey($prod->getName())->save();
+			$d = $prod->getUrlKey();
+			MGProductImport::log("generateUrlKeys():" . $d . PHP_EOL);
+		}
+	}
 }
 
 class MGImportSettings

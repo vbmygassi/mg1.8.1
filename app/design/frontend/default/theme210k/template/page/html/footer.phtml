@@ -24,33 +24,56 @@
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
 ?>
+
 <div class="footer-container">
 	<div class="container">
 		<div class="row">
 			<div class="col-xs-12">
 				<div class="footer">
-					  <p id="back-top"><a href="#top"><span></span></a> </p>
-					  <div class="footer-cols-wrapper">
-        <div class="footer-col">			
-         <div class="f_block">
-          <h4><?php echo $this->__('Information') ?></h4>
-          <div class="footer-col-content">
-           <?php echo $this->getChildHtml('cms_footer_links') ?>
-           <?php echo $this->getChildHtml('footer_links') ?>
-          </div>
-         </div>
-        </div>
-        <?php echo $this->getChildHtml('footer_list') ?>
-        <div class="footer-col footer-col-side">
-        	<?php echo $this->getChildHtml('left.newsletter'); ?>
-         <?php echo $this->getChildHtml('socials'); ?>
-        </div>
-					  </div>
+					<div class="footer-cols-wrapper">
+						<div class="footer-col">
+							<div class="f_block">
+								<h4><?php echo $this->__('Information') ?></h4>
+								<div class="footer-col-content">
+									<?php echo $this->getChildHtml('cms_footer_links') ?>
+									<?php echo $this->getChildHtml('footer_links') ?>
+								</div>
+							</div>
+						</div>
+						<?php echo $this->getChildHtml('footer_list') ?>
+						<div class="footer-col footer-col-side">
+							<?php echo $this->getChildHtml('left.newsletter'); ?>
+							<?php echo $this->getChildHtml('socials'); ?>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
+
+
+
+
+<?php
+$src ="https://www.paypalobjects.com/de_DE/i/bnr/bnr_nowAccepting_150x60.gif";
+print <<<EOD
+<div class="paypal-logo">
+	<a onclick="javascript:window.open('https://www.paypal.com/de/cgi-bin/webscr?cmd=xpt/Marketing/popup/OLCWhatIsPayPal-outside','paypal','width=600,height=350,left=0,top=0,location=no,status=yes,scrollbars=yes,resizable=yes'); return false;" title="Zusätzliche Optionen" href="#">
+		<img src="{$src}"/>
+	</a>
+</div>
+
+EOD;
+
+?>
+
+
+
+
+
+
+
 <div class="bottom-container">
 	<div class="container">
 		<div class="row">

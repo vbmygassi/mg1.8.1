@@ -34,33 +34,38 @@
 
 <?php 
 $src  = $this->getSkinUrl() . "js/camera.js"; 
-$img0 = $this->getSkinUrl() . "images/logo.gif";
-$img1 = $this->getSkinUrl() . "images/logo.png";
-$img2 = $this->getSkinUrl() . "images/mygassi-logo.png";
+$img0 = $this->getSkinUrl() . "images/cloud1.png";
+$img1 = $this->getSkinUrl() . "images/cloud2.png";
+$img2 = $this->getSkinUrl() . "images/cloud3.png";
 ?>
 
 <script src="<?php print $src?>" type="text/javascript"></script>
+
 <script type="text/javascript">
-   jQuery(function(){
-   jQuery('#camera_wrap').camera({
-   alignment: 'topCenter',
-   height: '54.296%',
-   minHeight: '134px',
-   loader : false,
-   navigation: false,
-   fx: 'simpleFade',
-   navigationHover:false,
-   thumbnails: false,
-   playPause: false 
-   })
+
+jQuery(document).ready(function(){
+	w  = jQuery(".banners_col").height();
+	w -= 3;
+	w += "px";
+	jQuery("#camera_wrap").camera({
+		alignmen: "topCenter",
+		height: w,
+		minHeight: "134px",
+		loader: false,
+		navigation: false,
+		fix: "simpleFade",
+		navigationHover: false,
+		thumbnails: false,
+		playPause: false
+	});
 });
+
 </script>
 
 <div class="header_slider_swap">
 	<div class="header_slider">
 		<div class="fluid_container">
 			<div id="camera_wrap">
-				<!-- Crockett alles klar da drin? Soll ich reinkommen? -->
 				<div data-src="<?php print $img0 ?>" data-link="">
 					<div class="camera_caption fadeFromLeft">
 						<div class="right_slider_side sl_1">
@@ -70,7 +75,6 @@ $img2 = $this->getSkinUrl() . "images/mygassi-logo.png";
 						</div>
 					</div>
 				</div>
-				<!-- Vorsicht! Hier drin ist ein Alligator! [ Boaarrghh ] -->
 				<div data-src="<?php print $img1 ?>" data-link="">
 					<div class="camera_caption fadeFromLeft">
 						<div class="right_slider_side sl_1">
@@ -80,7 +84,6 @@ $img2 = $this->getSkinUrl() . "images/mygassi-logo.png";
 						</div>
 					</div>
 				</div>
-				<!-- Crockett, wirf einfach ein Handtuch drüber! -->
 				<div data-src="<?php print $img2 ?>" data-link="">
 					<div class="camera_caption fadeFromLeft">
 						<div class="right_slider_side sl_1">
@@ -99,7 +102,11 @@ $img2 = $this->getSkinUrl() . "images/mygassi-logo.png";
 	<div class="banners_col">
 		<div class="banner ban1">
 			<a>
-				<img src="http://livedemo00.template-help.com/magento_47179/skin/frontend/default/theme210k/images/banner1.jpg" width="386" height="172">
+				<img 
+					alt=""
+					src="http://livedemo00.template-help.com/magento_47179/skin/frontend/default/theme210k/images/banner1.jpg" 
+					width="386" 
+					height="172">
 				<div class="ban_holder">
 					<h2>Versandkostenfrei</h2>
 					<p>Lorem ipsum dolor sit amet consectetur <span>&gt;&gt;</span></p>
@@ -108,7 +115,11 @@ $img2 = $this->getSkinUrl() . "images/mygassi-logo.png";
 		</div>
 		<div class="banner ban2">
 			<a>
-				<img src="http://livedemo00.template-help.com/magento_47179/skin/frontend/default/theme210k/images/banner2.jpg" width="386" height="172">
+				<img 
+					alt=""
+					src="http://livedemo00.template-help.com/magento_47179/skin/frontend/default/theme210k/images/banner2.jpg" 
+					width="386" 
+					height="172">
 				<div class="ban_holder">
 					<h2>Rabatte</h2>
 					<p>Lorem ipsum dolor sit amet consectetur <span>&gt;&gt;</span></p>
@@ -116,7 +127,6 @@ $img2 = $this->getSkinUrl() . "images/mygassi-logo.png";
 			</a>
 		</div>
 	</div>
-	<div 
 </div>
 
 <div class="cam-clear"></div>
@@ -150,13 +160,11 @@ $_productCollection = Mage::getModel("catalog/product")
     <?php $_iterator = 0; ?>
     <ol class="products-list" id="products-list">
     <?php foreach ($_productCollection as $_product): ?>
-       
 
 
 
 
 	<li class="item<?php if( ++$_iterator == sizeof($_productCollection) ): ?> last<?php endif; ?>">
-
 
 
 
