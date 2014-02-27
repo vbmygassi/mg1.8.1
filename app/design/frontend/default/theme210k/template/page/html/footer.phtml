@@ -39,41 +39,55 @@
 									<?php echo $this->getChildHtml('footer_links') ?>
 								</div>
 							</div>
-						</div>
+						</div><!-- footer-col -->
+						
 						<?php echo $this->getChildHtml('footer_list') ?>
+						
 						<div class="footer-col footer-col-side">
 							<?php echo $this->getChildHtml('left.newsletter'); ?>
 							<?php echo $this->getChildHtml('socials'); ?>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-
-
-
+						</div><!-- footer-col-side -->
 
 <?php
+// humpty . dumpty . social plugins
+/**
+print <<<EOD
+						<div class="socials">
+							<h4>Follow us<span class="toggle"></span></h4>
+							<div class="socials-content">
+								<a class="social1" href="http://facebook.com"></a>
+								<a class="social2" href="http://twitter.com"></a>
+								<a class="social3" href="http://soundcloud.com"></a>
+							</div>
+						</div><!-- socials -->
+
+EOD;
+**/
+
 $src ="https://www.paypalobjects.com/de_DE/i/bnr/bnr_nowAccepting_150x60.gif";
 print <<<EOD
-<div class="paypal-logo">
-	<a onclick="javascript:window.open('https://www.paypal.com/de/cgi-bin/webscr?cmd=xpt/Marketing/popup/OLCWhatIsPayPal-outside','paypal','width=600,height=350,left=0,top=0,location=no,status=yes,scrollbars=yes,resizable=yes'); return false;" title="Zusätzliche Optionen" href="#">
-		<img src="{$src}"/>
-	</a>
-</div>
-
+						<div class="paypal-logo">
+							<a 
+								onclick='javascript:window.open(
+									"https://www.paypal.com/de/cgi-bin/webscr?cmd=xpt/Marketing/popup/OLCWhatIsPayPal-outside",
+									"paypal",
+									"width=600,height=350,left=0,top=0,location=no,status=yes,scrollbars=yes,resizable=yes"
+								); return false;' 
+								title='Zusätzliche Optionen' href='#'>
+								<img src="{$src}"/>
+							</a>
+						</div><!-- paypal-logo -->
 EOD;
 
 ?>
+					</div>
+				</div>
+			</div>
+		</div><!-- .row -->
+	</div>
+</div>
 
-
-
-
-
-
-
+<?php /**
 <div class="bottom-container">
 	<div class="container">
 		<div class="row">
@@ -92,3 +106,4 @@ EOD;
 		</div>
 	</div>
 </div>
+**/ ?>

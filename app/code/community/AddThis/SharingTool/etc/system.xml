@@ -2,7 +2,7 @@
 <config>
     <tabs>
         <add_this translate="label" module="sharingtool">
-            <label>Social Icons</label>
+            <label>AddThis</label>
             <sort_order>100</sort_order>
         </add_this>
     </tabs>
@@ -11,7 +11,7 @@
             <label>Sharing Tool</label>
             <tab>add_this</tab>
             <frontend_type>text</frontend_type>
-            <sort_order>40</sort_order>
+            <sort_order>30</sort_order>
             <show_in_default>1</show_in_default>
             <show_in_website>1</show_in_website>
             <show_in_store>1</show_in_store>
@@ -25,35 +25,16 @@
                     <expanded>1</expanded>
                     <fields>
                         <enabled translate="label">
-                            <label>Display Tool</label>
+                            <label>Status</label>
                             <frontend_type>select</frontend_type>
                             <source_model>adminhtml/system_config_source_enabledisable</source_model>
                             <sort_order>10</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
-                        </enabled>
-                        <pubid translate="label">
-                            <label>Profile ID</label>
-                            <frontend_type>text</frontend_type>
-                            <sort_order>20</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                            <comment><![CDATA[<a href="http://support.addthis.com/customer/portal/articles/381263-addthis-client-api" target="_blank">More info</a>]]></comment>
-                        </pubid>
-					    <menuvx translate="label">
-                            <label>Menu Version</label>
-                            <frontend_type>select</frontend_type>
-                            <source_model>sharingtool/source_menuversions</source_model>
-                            <sort_order>110</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>                                                                                                     
-                        </menuvx>                        
+                        </enabled>                     
                     </fields>
-                </general>
-                
+                </general>                
                 <button_style translate="label" module="sharingtool">
 				    <label>Button Style</label>
                     <sort_order>900</sort_order>
@@ -70,22 +51,30 @@
                             <show_in_store>1</show_in_store>
                              <comment><![CDATA[<script type="text/javascript">
                              document.observe("dom:loaded", function() {
-                             if(!$('sharing_tool_button_style_button_setstyle_9').checked){
-                             	$('row_sharing_tool_button_style_custom_button_url').hide();   
-                             }                                                       
-                             for(i=0;i<9;i++){                         
-                             $$('[id^="sharing_tool_button_style_button_setstyle_"]')[i].observe('click', function() {
-	                             if(this.id == "sharing_tool_button_style_button_setstyle_9"){
-	                            	$('row_sharing_tool_button_style_custom_button_url').show();
-	                             }                             
-	                             else {
-	                            	$('row_sharing_tool_button_style_custom_button_url').hide();
+	                             if(!$('sharing_tool_button_style_button_setstyle_9').checked){
+	                             	$('row_sharing_tool_button_style_custom_button_url').hide();   
 	                             }
-                             });
-                             }
+	                             if(!$('sharing_tool_button_style_button_setstyle_10').checked){
+	                             	$('row_sharing_tool_button_style_custom_button_code').hide();   
+	                             }                                                                                  
+	                             for(i=0;i<10;i++){                         
+		                             $$('[id^="sharing_tool_button_style_button_setstyle_"]')[i].observe('click', function() {
+			                             if(this.id == "sharing_tool_button_style_button_setstyle_9"){
+			                            	$('row_sharing_tool_button_style_custom_button_url').show();
+			                             }                             
+			                             else {
+			                            	$('row_sharing_tool_button_style_custom_button_url').hide();
+			                             }
+			                             if(this.id == "sharing_tool_button_style_button_setstyle_10"){
+			                            	$('row_sharing_tool_button_style_custom_button_code').show();
+			                             }                             
+			                             else {
+			                            	$('row_sharing_tool_button_style_custom_button_code').hide();
+			                             }	                             
+		                             });
+	                             }
                              });</script>]]></comment>                                             							
-                        </button_set>
-                        
+                        </button_set>                        
                          <custom_button_url translate="label">
                             <label>Custom Button Image URL</label>
                             <frontend_type>text</frontend_type>
@@ -95,9 +84,16 @@
                             <show_in_store>1</show_in_store>
                             <comment>ex : http://www.example.com/button_name.jpg</comment>                            
                         </custom_button_url>
+                        <custom_button_code translate="label">
+                            <label>Custom Code</label>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>                                                       
+                        </custom_button_code>                       
 					</fields>	
-				</button_style>
-				
+				</button_style>				
 				<custom_share translate="label" module="sharingtool">
                     <label>Custom URL and Title (Optional)</label>
                     <sort_order>1100</sort_order>
@@ -130,8 +126,7 @@
                             <show_in_store>1</show_in_store>
                         </custom_description>                         
                     </fields>
-                </custom_share>
-                
+                </custom_share>                
                  <api translate="label" module="sharingtool">
 				    <label>API Configuration Options (Optional)</label>
                     <sort_order>1200</sort_order>
@@ -215,62 +210,6 @@
                             <show_in_store>1</show_in_store>
                             <comment>Force the menu to use a particular language.</comment>                                                                                
                         </ui_language>
-                        <ui_offset_top translate="label">
-                            <label>Offset Top</label>
-                            <frontend_type>text</frontend_type>
-                            <sort_order>120</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                            <comment>Number of pixels to offset the top of the compact menu from its parent element.</comment>                                                       
-                        </ui_offset_top>
-                        <ui_offset_left translate="label">
-                            <label>Offset Left</label>
-                            <frontend_type>text</frontend_type>
-                            <sort_order>130</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                            <comment>Number of pixels to offset the left of the compact menu from its parent element.</comment>                                                       
-                        </ui_offset_left>
-                        <ui_cobrand translate="label">
-                            <label>Brand Label</label>
-                            <frontend_type>text</frontend_type>
-                            <sort_order>160</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                            <comment>Additional branding message to be rendered in the upper-right-hand corner of the menus.</comment>                                                       
-                        </ui_cobrand>
-                        <ui_use_css translate="label">
-                            <label>Load AddThis CSS</label>
-                            <frontend_type>select</frontend_type>
-                            <source_model>adminhtml/system_config_source_yesno</source_model>
-                            <sort_order>170</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-					    </ui_use_css>
-					    <ui_use_addressbook translate="label">
-                            <label>Import Address</label>
-                            <frontend_type>select</frontend_type>
-                            <source_model>adminhtml/system_config_source_yesno</source_model>
-                            <sort_order>180</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                            <comment>If yes, the user will be able import their contacts from popular webmail services when using email sharing.</comment>                                                       
-                       </ui_use_addressbook>
-                       <ui_508_compliant translate="label">
-                            <label>Keyboard Navigable</label>
-                            <frontend_type>select</frontend_type>
-                            <source_model>adminhtml/system_config_source_yesno</source_model>
-                            <sort_order>190</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>1</show_in_website>
-                            <show_in_store>1</show_in_store>
-                            <comment>If yes, clicking the AddThis button will open a new window to a page that is keyboard navigable.</comment>                                                       
-                       </ui_508_compliant>
                        <data_track_clickback translate="label">
                             <label>Track Clickbacks</label>
                             <frontend_type>select</frontend_type>
@@ -301,8 +240,7 @@
                             <comment>If set, AddThis will send tracking events to Google.</comment>                                                       
                         </data_ga_tracker>
 					</fields>	
-				</api>
-				
+				</api>				
 				<custom_service translate="label" module="sharingtool">
                     <label>Specify Your Own AddThis Sharing Service (Optional)</label>
                     <sort_order>1300</sort_order>
@@ -336,8 +274,7 @@
                             <show_in_store>1</show_in_store>                                                      
                         </services_custom_icon>                       
                     </fields>
-                </custom_service>								
-
+                </custom_service>
             </groups>
         </sharing_tool>
     </sections>

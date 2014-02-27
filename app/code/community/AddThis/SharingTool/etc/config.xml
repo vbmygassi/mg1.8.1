@@ -2,7 +2,7 @@
 <config>
    <modules>
        <AddThis_SharingTool>
-           <version>1.0.0</version>
+           <version>2.0.1</version>
        </AddThis_SharingTool>
    </modules>
    <global>
@@ -46,10 +46,15 @@
         <sharing_tool>
             <general>
                 <enabled>1</enabled>
-                <menuvx>300</menuvx>                
             </general>
             <button_style>
-                <button_set>style_3</button_set>                
+                <button_set>style_3</button_set>
+                <custom_button_code>&lt;div class=&quot;addthis_toolbox addthis_default_style &quot;&gt;
+	&lt;a class=&quot;addthis_button_facebook&quot;&gt;&lt;/a&gt;
+	&lt;a class=&quot;addthis_button_twitter&quot;&gt;&lt;/a&gt;
+	&lt;a class=&quot;addthis_button_pinterest_pinit&quot;&gt;&lt;/a&gt;
+	&lt;a class=&quot;addthis_counter addthis_pill_style&quot;&gt;&lt;/a&gt;
+&lt;/div&gt;</custom_button_code>                
             </button_style>
             <compact>
                 <advanced>0</advanced>                
@@ -74,20 +79,23 @@
             </updates>
         </layout>
          <events>
-                       <core_block_abstract_to_html_after>
-                               <observers>
-                                       <sharingtool>
-                                               <type>singleton</type>
-                                               <class>sharingtool/observer</class>
-                                               <method>addButtonsHtml</method>
-                                       </sharingtool>
-                               </observers>
-                       </core_block_abstract_to_html_after>
+	         <core_block_abstract_to_html_after>
+	             <observers>
+	                 <sharingtool>
+	                         <type>singleton</type>
+	                         <class>sharingtool/observer</class>
+	                         <method>addButtonsHtml</method>
+	                 </sharingtool>
+	             </observers>
+	         </core_block_abstract_to_html_after>
          </events>
    </frontend>
    <adminhtml>
         <acl>
             <resources>
+		        <all>
+		            <title>Allow Everything</title>
+		        </all>            
                 <admin>
                     <children>
                         <system>
