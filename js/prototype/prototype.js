@@ -1926,7 +1926,7 @@ Element.Methods = {
     return element;
   },
 
-  hide: function(element) {
+  hide: function(element) { if(null == element){ return element; }
     element = $(element);
     element.style.display = 'none';
     return element;
