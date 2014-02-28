@@ -37,6 +37,7 @@ $src  = $this->getSkinUrl() . "js/camera.js";
 $img0 = $this->getSkinUrl() . "images/cloud1.png";
 $img1 = $this->getSkinUrl() . "images/cloud2.png";
 $img2 = $this->getSkinUrl() . "images/cloud3.png";
+$img3 = $this->getSkinUrl() . "images/test.png"; 
 ?>
 
 <script src="<?php print $src?>" type="text/javascript"></script>
@@ -44,9 +45,12 @@ $img2 = $this->getSkinUrl() . "images/cloud3.png";
 <script type="text/javascript">
 
 jQuery(document).ready(function(){
+	/*
 	w  = jQuery(".banners_col").height();
 	w -= 3;
 	w += "px";
+	*/
+	w = "365px";
 	jQuery("#camera_wrap").camera({
 		alignmen: "topCenter",
 		height: w,
@@ -104,9 +108,11 @@ jQuery(document).ready(function(){
 			<a>
 				<img 
 					alt=""
-					src="http://livedemo00.template-help.com/magento_47179/skin/frontend/default/theme210k/images/banner1.jpg" 
+					src="<?php print $img3?>"
+					<?php /** src="http://livedemo00.template-help.com/magento_47179/skin/frontend/default/theme210k/images/banner1.jpg" **/ ?> 
 					width="386" 
-					height="172">
+					height="172"
+				>
 				<div class="ban_holder">
 					<h2>Versandkostenfrei</h2>
 					<p>Lorem ipsum dolor sit amet consectetur <span>&gt;&gt;</span></p>
@@ -117,9 +123,11 @@ jQuery(document).ready(function(){
 			<a>
 				<img 
 					alt=""
-					src="http://livedemo00.template-help.com/magento_47179/skin/frontend/default/theme210k/images/banner2.jpg" 
+					src="<?php print $img3?>"
+					<?php /** src="http://livedemo00.template-help.com/magento_47179/skin/frontend/default/theme210k/images/banner2.jpg" **/ ?>
 					width="386" 
-					height="172">
+					height="172"
+				>
 				<div class="ban_holder">
 					<h2>Rabatte</h2>
 					<p>Lorem ipsum dolor sit amet consectetur <span>&gt;&gt;</span></p>

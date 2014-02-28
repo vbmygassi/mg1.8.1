@@ -1,9 +1,11 @@
 <?php
-define("mageroot", "/Users/vico/Workspace/MyGassiShop1.8.1/app/Mage.php");
-define("PDFTemplatePath", "/Users/vico/Workspace/MygassiShop1.8.1/shell/pdf-template/");
-define("ImageTestPath", "/Users/vico/Workspace/MyGassiShop1.8.1/imagetest.html");
-define("ImageTestExcelPath", "/Users/vico/Workspace/MyGassiShop/imagetest.csv");
-define("MissingAssetLogPath", "/Users/vico/Workspace/MyGassiShop1.8.1/missing-asset-log.txt");
+define("mageroot", "/Users/vico/Workspace/MyGassiShop1.8.1/magento/app/Mage.php");
+define("PDFTemplatePath", "/Users/vico/Workspace/MygassiShop1.8.1/magento/shell/pdf-template/");
+define("ImageTestPath", "/Users/vico/Workspace/MyGassiShop1.8.1/magento/imagetest.html");
+define("ImageTestExcelPath", "/Users/vico/Workspace/MyGassiShop/magento/imagetest.csv");
+define("MissingAssetLogPath", "/Users/vico/Workspace/MyGassiShop1.8.1/magento/missing-asset-log.txt");
+define("UpdateCouponCommand", "php /Users/vico/Workspace/MyGassiShop1.8.1/magento/shell/mygassi-update-coupon.php ");
+define("ProductModelPath", "shell/mygassi-productmodel.php");
 define("CookiePath", "shell/cookie.txt");
 define("TempfilePath", "shell/log/ctmp");
 define("RetoureTempfilePath", "shell/log/rtmp");
@@ -13,7 +15,6 @@ define("JSONExportPath", "media/json/productcatalog.json");
 define("JSONServiceURL", "https://shop.mygassi.com/jsonexport");	
 define("SQLDumpPath", "shell/mygassi-sqldump.php");
 define("SQLDumpDirPath", "shell/sql-dump/");
-define("ProductModelPath", "shell/mygassi-productmodel.php");
 define("TCPDFPath", "shell/tcpdf/tcpdf.php");
 define("OrderPath", "http://10.14.10.20/Git/magento-project-karlie/webservice/public/index.php/v1/order");
 define("ParcelTrackPath", "http://10.14.10.20/Git/magento-project-karlie/webservice/public/index.php/v1/mygassipackage/id/");
@@ -26,6 +27,5 @@ define("RetMridPath", "http://10.14.10.20/Git/magento-project-karlie/webservice/
 define("MCApiKey", "94a46f6cef53348a7261f5e5c0014448-us7");
 define("NewsletterListId", "998ef02c1a");
 define("PressListId", "f96f899e42");
-define("mcapi", "/Users/vico/Workspace/MyGassiShop1.8.1/shell/mailchimp-api-class/MCAPI.class.php");
+define("mcapi", "/Users/vico/Workspace/MyGassiShop1.8.1/magento/shell/mailchimp-api-class/MCAPI.class.php");
 define("ProductAttributesURL", "http://werkstatt.code-x.de/karlie/webservice/public/v1/attributes?sku=");
-define("UpdateCouponCommand", "php shell/mygassi-update-coupon.php ");

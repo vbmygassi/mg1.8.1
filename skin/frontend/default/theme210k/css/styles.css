@@ -3002,19 +3002,12 @@ button.button > span
 
 { transition: all 0.3s ease 0s; }
 
+/************************************************************ 
 
-
-
-
-
-
-
-
-
-
-
-
-
+ MyGassi related
+ --- -----------
+ --- -----------
+ ***************/
 
 .add-to-links,
 .last_block,
@@ -3028,7 +3021,10 @@ button.button > span
 .footer-links-menu .links-2,
 .footer-col-content .links,
 .cart .shipping,
+.availability-only,
 .bottom-wrapper,
+.checkout-types li a,
+.language-list,
 .row-product
 {
 	display: none;
@@ -3083,12 +3079,20 @@ button.button > span
 	padding: 0px 0 0;
 }
 
-.paypal-logo
+.footer-logos
+{
+	text-align: 100%;
+	text-align: right;
+	background-color: red;
+}
+
+.logos
 {
 	margin-top: 12px;
 	margin-bottom: 12px;
-	text-align: right;
+	padding-right: 28px;
 	width: 100%;
+	text-align: right;
 }
 
 .top-icon-menu
@@ -3101,32 +3105,74 @@ button.button > span
 	background: none repeat scroll 0 0 #58a300;
 }
 
-
-
-/*
-
-.social1, 
-.social2,
-.social3
+.ban1 .ban_holder
 {
-	float: left;
-	height: 38px;
-	margin: 0 9px 0 0;
-	width: 38px;
+	right: none;
+	left: 28px;
 }
 
-.social1{ background: url("../images/social1.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0); }
-.social1:hover { background: url("../images/social1.png") no-repeat scroll 0 -38px rgba(0, 0, 0, 0); }
+.products-grid .price-box .price
+{
+	font-family: "Open Sans";
+	color: white;
+	font-size: 16px;
+	line-height: 24px;
+	font-weight: normal;
+}
 
-.social2{ background: url("../images/social2.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0); }
-.social2:hover { background: url("../images/social2.png") no-repeat scroll 0 -38px rgba(0, 0, 0, 0); }
+.product-essential .product-shop .price-box .price
+{
+	color: #58a300;
+	font-weight: normal;
+}
 
-.social3{ background: url("../images/social3.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0); }
-.social3:hover { background: url("../images/social3.png") no-repeat scroll 0 -38px rgba(0, 0, 0, 0); }
+.products-grid .price-box .uvp .price,
+.product-view .product-shop .price-box .regular-price .uvp .price 
+{
+	font-size: 12px;
+	line-height: 12px;
+	color: #333333;
+	width: 100%;
+	text-decoration: line-through;
+}
+.products-grid .price-box .uvp-title,
+.product-view .product-shop .price-box .regular-price .uvp-title 
+{
+	font-size: 11px;
+	line-height: 12px;
+	color: #333333;
+	width: 100%;
+}
 
-*/
+.products-grid .price-box
+{
+	background: none repeat scroll 0 0 #58a300;
+	opacity: .8;
+	border-radius: 50%;
+	display: none;
+	height: 112px;
+	left: 50%;
+	margin: 0 0 0 -54px;
+	position: absolute;
+	text-align: center;
+	top: -92px;
+	width: 112px;
+	line-height: 10px;
+	padding-top: 46px;
+}
 
+body
+{
+	background:#ffffff url(../images/bg.gif) 50% 0;
+	font-family: "Open Sans";
+}
 
+.top-icon-menu
+{
+	background:#ffffff url(../images/bg.gif) 50% 0;
+}
 
-
-
+.swipe-menu .links li a, .footer-links-menu li a, .home-link
+{
+	font-weight: normal;
+}
