@@ -150,6 +150,7 @@ class Mage_Adminhtml_Block_Catalog_Product_Grid extends Mage_Adminhtml_Block_Wid
             $collection->addAttributeToSelect('old_price');
             $collection->addAttributeToSelect('is_top_product');
             $collection->addAttributeToSelect('is_stream_product');
+            $collection->addAttributeToSelect('appears_on_the_internez');
             $collection->joinAttribute('status', 'catalog_product/status', 'entity_id', null, 'inner');
             $collection->joinAttribute('visibility', 'catalog_product/visibility', 'entity_id', null, 'inner');
         }
@@ -253,7 +254,7 @@ class Mage_Adminhtml_Block_Catalog_Product_Grid extends Mage_Adminhtml_Block_Wid
 	// Streichpreis
         $this->addColumn('old_price',
             array(
-                'header'=> Mage::helper('catalog')->__('Streichpreis'),
+                'header'=> Mage::helper('catalog')->__('UVP'),
                 'type'  => 'price',
                 'currency_code' => $store->getBaseCurrency()->getCode(),
                 'index' => 'old_price',
@@ -278,6 +279,21 @@ class Mage_Adminhtml_Block_Catalog_Product_Grid extends Mage_Adminhtml_Block_Wid
 			'index' => 'is_stream_product'
 		)
 	);
+
+        $this->addColumn('appears_on_the_internez',
+		array(
+			'header'=> Mage::helper("catalog")->__("Onlineshop"),
+			'width' => '70px',
+			"type" => "yesorno",
+			'index' => 'appears_on_the_internez'
+		)
+	);
+
+/*
+        if (Mage::helper('catalog')->isModuleEnabled('Mage_CatalogInventory')) {
+
+
+
 
 /*
         if (Mage::helper('catalog')->isModuleEnabled('Mage_CatalogInventory')) {

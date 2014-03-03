@@ -3020,11 +3020,12 @@ button.button > span
 .toolbar,
 .footer-links-menu .links-2,
 .footer-col-content .links,
-.cart .shipping,
 .availability-only,
+.cart .shipping,
 .bottom-wrapper,
 .checkout-types li a,
 .language-list,
+.breadcrumbs,
 .row-product
 {
 	display: none;
@@ -3165,6 +3166,7 @@ body
 {
 	background:#ffffff url(../images/bg.gif) 50% 0;
 	font-family: "Open Sans";
+	color: #000000;
 }
 
 .top-icon-menu
@@ -3175,4 +3177,24 @@ body
 .swipe-menu .links li a, .footer-links-menu li a, .home-link
 {
 	font-weight: normal;
+}
+
+.products-grid .desc_grid
+{
+	color: #000000;
+}
+
+.cart .totals table .tax,
+.netto
+{
+}
+
+.brutto strong
+{
+	font-size: 1.5em;
+}
+
+.cart .totals table th, .cart .totals table td
+{
+	width: 70%;
 }
