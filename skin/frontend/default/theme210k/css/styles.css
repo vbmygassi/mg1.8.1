@@ -3058,7 +3058,7 @@ button.button > span
 
 .ban1
 {
-	margin-bottom: 18px;
+	margin-bottom: 38px;
 }
 
 .camera_loader
@@ -3197,4 +3197,45 @@ body
 .cart .totals table th, .cart .totals table td
 {
 	width: 70%;
+
+}
+
+.appstore-logo,
+.paypal-logo,
+.sofot-logo
+{
+}
+
+.apc .sp-methods dt
+{
+	padding-bottom: 0px;
+}
+
+.gexcltax,
+.item-msg,
+#shopping-cart-totals-table .cshipping
+{
+	display: none;
+	visibility: hidden;
+}
+
+.block-cart-header .block-content .summary,
+.block-cart-header .block-content .summary p strong
+{
+	color: #58a300;
+}
+
+.block-cart-header:before
+{
+	color: #58a300;
+}
+
+.block-cart-header .summary, .block-cart-header .empty, .block-cart-header .summary strong
+{
+	color: #58a300;
+}
+
+.price
+{
+	text-align: right;
 }

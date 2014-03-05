@@ -11,87 +11,10 @@ logger("Starting: mygassi-install");
 
 $setup = new Mage_Eav_Model_Entity_Setup('core_setup');
 
-$setup->updateAttribute("catalog_product", "weight", "is_required", 0);
-$setup->updateAttribute("catalog_product", "basisartikelnr", "is_required", 0);
-
-/*
-$res = $setup->addAttribute('catalog_product', 'group_id', array(
-	'group'                      => 'MyGassi',
-	'label'                      => 'Produktgruppen ID',
-	'type'                       => 'int',
-	'input'                      => 'text',
-	'frontend'                   => '',
-	'visible'                    => true,
-	'required'                   => false,
-	'user_defined'               => true,
-	'is_user_defined'            => true,
-	'searchable'                 => true,
-	'filterable'                 => true,
-	'comparable'                 => false,
-	'visible_on_front'           => false,
-	'visible_in_advanced_search' => false,
-	'default'			=> '0',
-	'unique'                     => false 
-));
-
-$res = $setup->addAttribute('catalog_product', 'category_ids', array(
-	'group'                      => 'MyGassi',
-	'label'                      => 'Kategorien ID',
-	'type'                       => 'int',
-	'input'                      => 'text',
-	'frontend'                   => '',
-	'visible'                    => true,
-	'required'                   => false,
-	'user_defined'               => true,
-	'is_user_defined'            => true,
-	'searchable'                 => true,
-	'filterable'                 => true,
-	'comparable'                 => false,
-	'visible_on_front'           => false,
-	'visible_in_advanced_search' => false,
-	'default'			=> '0',
-	'unique'                     => false 
-));
-*/
+$setup->updateAttribute('customer_address','telephone','is_required', 0);
 
 exit(1);
 
-/*
-$res = $setup->addAttribute('catalog_category', 'cpl', array(
-	'group'			=> 'Display Settings',
-	'label'			=> 'Category-Product-Link',
-	'type'			=> 'varchar',
-	'input'			=> 'text',
-    	'visible'		=> true,
-	'required' 		=> false,
-    	'user_defined' 		=> true,
-
-
-
-
-
-
-
-
-
-
-exit(1);
-
-/*
-$res = $setup->addAttribute('catalog_category', 'cpl', array(
-	'group'			=> 'Display Settings',
-	'label'			=> 'Category-Product-Link',
-	'type'			=> 'varchar',
-	'input'			=> 'text',
-    	'visible'		=> true,
-	'required' 		=> false,
-    	'user_defined' 		=> true,
-	'visible_on_front' 	=> false,
-
-
-
-
-/*
 function addOrderState($args)
 {
 	$installer = new Mage_Core_Model_Resource_Setup();
@@ -115,6 +38,9 @@ function addOrderState($args)
 		logger($sql);
 		try{ 
 			$installer->run($sql); 
+		}
+		catch(PDOException $e){
+			print $e->getMessage();
 		} 
 		catch(Extension $e){ 
 			logger($e->getMessage()); 
@@ -122,7 +48,6 @@ function addOrderState($args)
 	}
 	$installer->endSetup();
 }
-*/
 
 /*
 addOrderState(
@@ -211,179 +136,6 @@ addOrderState(
 );
 */
 
-/*
-$setup->addAttribute('catalog_product', 'add_desc_1', array(
-	'group'				=> 'MyGassi',
-	'backend_type'			=> 'text',
-	'type'				=> 'text',
-	'input'				=> 'textarea',
-	'frontend_input'		=> 'textarea',
-	'visible'			=> true,
-	'label'				=> 'Zusätzliche Beschreibung 1',
-	// 'global'			=> Mage_Catalog_Model_Resource_Eav_Attribute::SCOPE_STORE,
-	'required'			=> false,
-	'default'			=> '',
-	'searchable'			=> false,
-	'filterable'			=> false,
-	'comparable'			=> false,
-	'visible_on_front'		=> true,
-	'used_in_product_listing'	=> false,
-	'unique'			=> false,
-));
-
-$setup->addAttribute('catalog_product', 'add_desc_2', array(
-	'group'				=> 'MyGassi',
-	'backend_type'			=> 'text',
-	'type'				=> 'text',
-	'input'				=> 'textarea',
-	'frontend_input'		=> 'textarea',
-	'visible'			=> true,
-	'label'				=> 'Zusätzliche Beschreibung 2',
-	// 'global'			=> Mage_Catalog_Model_Resource_Eav_Attribute::SCOPE_STORE,
-	'required'			=> false,
-	'default'			=> '',
-	'searchable'			=> false,
-	'filterable'			=> false,
-	'comparable'			=> false,
-	'visible_on_front'		=> true,
-	'used_in_product_listing'	=> false,
-	'unique'			=> false,
-));
-
-$setup->addAttribute('catalog_product', 'add_desc_3', array(
-	'group'				=> 'MyGassi',
-	'backend_type'			=> 'text',
-	'type'				=> 'text',
-	'input'				=> 'textarea',
-	'frontend_input'		=> 'textarea',
-	'visible'			=> true,
-	'label'				=> 'Zusätzliche Beschreibung 3',
-	// 'global'			=> Mage_Catalog_Model_Resource_Eav_Attribute::SCOPE_STORE,
-	'required'			=> false,
-	'default'			=> '',
-	'searchable'			=> false,
-	'filterable'			=> false,
-	'comparable'			=> false,
-	'visible_on_front'		=> true,
-	'used_in_product_listing'	=> false,
-	'unique'			=> false,
-));
-
-$setup->addAttribute('catalog_category', 'add_desc_1', array(
-	'group'				=> 'Default',
-	'backend_type'			=> 'text',
-	'type'				=> 'text',
-	'input'				=> 'textarea',
-	'frontend_input'		=> 'textarea',
-	'visible'			=> true,
-	'label'				=> 'Zusätzliche Beschreibung 1',
-	// 'global'			=> Mage_Catalog_Model_Resource_Eav_Attribute::SCOPE_STORE,
-	'required'			=> false,
-	'default'			=> '',
-	'searchable'			=> false,
-	'filterable'			=> false,
-	'comparable'			=> false,
-	'visible_on_front'		=> true,
-	'used_in_product_listing'	=> false,
-	'unique'			=> false,
-));
-
-$setup->addAttribute('catalog_category', 'add_desc_2', array(
-	'group'				=> 'Default',
-	'backend_type'			=> 'text',
-	'type'				=> 'text',
-	'input'				=> 'textarea',
-	'frontend_input'		=> 'textarea',
-	'visible'			=> true,
-	'label'				=> 'Zusätzliche Beschreibung 2',
-	// 'global'			=> Mage_Catalog_Model_Resource_Eav_Attribute::SCOPE_STORE,
-	'required'			=> false,
-	'default'			=> '',
-	'searchable'			=> false,
-	'filterable'			=> false,
-	'comparable'			=> false,
-	'visible_on_front'		=> true,
-	'used_in_product_listing'	=> false,
-	'unique'			=> false,
-));
-
-$setup->addAttribute('catalog_category', 'add_desc_3', array(
-	'group'				=> 'Default',
-	'backend_type'			=> 'text',
-	'type'				=> 'text',
-	'input'				=> 'textarea',
-	'frontend_input'		=> 'textarea',
-	'visible'			=> true,
-	'label'				=> 'Zusätzliche Beschreibung 3',
-	// 'global'			=> Mage_Catalog_Model_Resource_Eav_Attribute::SCOPE_STORE,
-	'required'			=> false,
-	'default'			=> '',
-	'searchable'			=> false,
-	'filterable'			=> false,
-	'comparable'			=> false,
-	'visible_on_front'		=> true,
-	'used_in_product_listing'	=> false,
-	'unique'			=> false,
-));
-*/
-
-/*
-$res = $setup->addAttribute('catalog_product', 'linientext', array(
-	'group'                      => 'MyGassi',
-	'label'                      => 'Linientext',
-	'backend_type'               => 'text',
-	'type'				=> 'textarea',
-	'frontend_input'		=> 'textarea',
-	'visible'                    => true,
-	'required'                   => false,
-	'user_defined'               => true,
-	'is_user_defined'            => true,
-	'searchable'                 => true,
-	'filterable'                 => true,
-	'comparable'                 => false,
-	'visible_on_front'           => false,
-	'visible_in_advanced_search' => false,
-	'unique'                     => false 
-));
-
-$res = $setup->addAttribute('catalog_product', 'gruppentext', array(
-	'group'                      => 'MyGassi',
-	'label'                      => 'Gruppentext',
-	'backend_type'               => 'text',
-	'type'				=> 'textarea',
-	'frontend_input'		=> 'textarea',
-	'visible'                    => true,
-	'required'                   => false,
-	'user_defined'               => true,
-	'is_user_defined'            => true,
-	'searchable'                 => true,
-	'filterable'                 => true,
-	'comparable'                 => false,
-	'visible_on_front'           => false,
-	'visible_in_advanced_search' => false,
-	'unique'                     => false 
-));
-
-$res = $setup->addAttribute('catalog_product', 'einzeltext', array(
-	'group'                      => 'MyGassi',
-	'label'                      => 'Einzeltext',
-	'backend_type'               => 'text',
-	'type'				=> 'textarea',
-	'frontend_input'		=> 'textarea',
-	'visible'                    => true,
-	'required'                   => false,
-	'user_defined'               => true,
-	'is_user_defined'            => true,
-	'searchable'                 => true,
-	'filterable'                 => true,
-	'comparable'                 => false,
-	'visible_on_front'           => false,
-	'visible_in_advanced_search' => false,
-	'unique'                     => false 
-));
-*/
-
-/*
 $setup->addAttribute('customer', 'invoice_coupon', array(
 	'input'         => 'text',
 	'type'          => 'text',
@@ -402,29 +154,9 @@ $setup->addAttribute('customer', 'newsletter_coupon', array(
 	'user_defined'  => 0
 ));
 
-$res = $setup->addAttribute('order', 'karlie_order_id', array(
-	'label'                      => 'Karlie Order ID',
-	'type'                       => 'text',
-	'input'                      => 'text',
-	'frontend'                   => '',
-	'source'                     => '',
-	'visible'                    => true,
-	'required'                   => false,
-	'user_defined'               => true,
-	'is_user_defined'            => true,
-	'searchable'                 => true,
-	'filterable'                 => true,
-	'comparable'                 => false,
-	'visible_on_front'           => true,
-	'visible_in_advanced_search' => false,
-	'unique'                     => true 
-));
-*/
-
 /**
  * adds parcel-id attribute to sale
  */
-/*
 $res = $setup->addAttribute('order', 'parcel_id', 
 	array(
 	'label'                      => 'Parcel ID',
@@ -444,47 +176,6 @@ $res = $setup->addAttribute('order', 'parcel_id',
 	'unique'                     => false 
 	)
 );
-
-$res = $setup->addAttribute('quote', 'parcel_id', 
-	array(
-	'label'                      => 'Parcel ID',
-	'type'                       => 'text',
-	'input'                      => 'text',
-	'frontend'                   => '',
-	'source'                     => '',
-	'visible'                    => true,
-	'required'                   => false,
-	'user_defined'               => true,
-	'is_user_defined'            => true,
-	'searchable'                 => true,
-	'filterable'                 => true,
-	'comparable'                 => false,
-	'visible_on_front'           => true,
-	'visible_in_advanced_search' => false,
-	'unique'                     => false 
-	)
-);
-*/
-
-/*
-$res = $setup->addAttribute('catalog_product', 'basisartikelnr', array(
-	'group'                      => 'MyGassi',
-	'label'                      => 'Karlie Basis Artikel Nr.',
-	'type'                       => 'text',
-	'input'                      => 'text',
-	'frontend'                   => '',
-	'source'                     => '',
-	'visible'                    => true,
-	'required'                   => true,
-	'user_defined'               => true,
-	'is_user_defined'            => true,
-	'searchable'                 => false,
-	'filterable'                 => true,
-	'comparable'                 => false,
-	'visible_on_front'           => false,
-	'visible_in_advanced_search' => false,
-	'unique'                     => false 
-));
 
 $res = $setup->addAttribute('catalog_product', 'is_top_product', array(
 	'group'                      => 'MyGassi',
@@ -525,39 +216,27 @@ $res = $setup->addAttribute('catalog_product', 'is_stream_product', array(
 	'default'			=> '0',
 	'unique'                     => false 
 ));
-*/
 
-/*
-$res = $setup->addAttribute('catalog_category', 'cpl', array(
-	'group'			=> 'Display Settings',
-	'label'			=> 'Category-Product-Link',
-	'type'			=> 'varchar',
-	'input'			=> 'text',
-    	'visible'		=> true,
-	'required' 		=> false,
-    	'user_defined' 		=> true,
-	'visible_on_front' 	=> false,
-	'unique' 		=> true,
-	'sort_order' 		=> 500
+$res = $setup->addAttribute('catalog_product', 'appears_on_the_internez', array(
+	'group'                      => 'MyGassi',
+	'label'                      => 'Im Onlineshop sichtbar',
+	'type'                       => 'int',
+	'input'                      => 'select',
+	'frontend'                   => '',
+	'source'                     => 'eav/entity_attribute_source_boolean',
+	'visible'                    => true,
+	'required'                   => false,
+	'user_defined'               => true,
+	'is_user_defined'            => true,
+	'searchable'                 => true,
+	'filterable'                 => true,
+	'comparable'                 => false,
+	'visible_on_front'           => false,
+	'visible_in_advanced_search' => false,
+	'default'			=> '0',
+	'unique'                     => false 
 ));
-*/
 
-/*
-try{
-	Mage::getModel('core/store')->setCode("en")
-		->setWebsiteId(1)
-		->setGroupId(1)
-		->setName('English')
-		->setIsActive(1)
-		->setSortOrder(1)
-		->save();
-} 
-catch(Exception $e){
-	logger("Some exception while adding store view: " . $e->getMessage());
-}
-*/
-
-/*
 $res = $setup->addAttribute('catalog_product', 'old_price', array(
 	'group'                      => 'MyGassi',
 	'label'                      => 'Streichpreis',
@@ -576,7 +255,6 @@ $res = $setup->addAttribute('catalog_product', 'old_price', array(
 	'default'			=> '0',
 	'unique'                     => false 
 ));
-*/
 
 $setup->updateAttribute('catalog_product','short_description','is_required', 0);
 $setup->updateAttribute('catalog_product','description','is_required', 0);

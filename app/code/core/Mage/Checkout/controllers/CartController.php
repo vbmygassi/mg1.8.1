@@ -121,6 +121,24 @@ class Mage_Checkout_CartController extends Mage_Core_Controller_Front_Action
      */
     public function indexAction()
     {
+
+
+
+
+/*
+$total = Mage::getModel("checkout/session")->getQuote()->getGrandTotal();
+$f = "freeshipping_freeshipping";
+$k = "flatrate_flatrate";
+$x = $f;
+if(19.00 >= $total){
+	$x = $k;
+}
+Mage::getSingleton('checkout/type_onepage')->saveShippingMethod($x);
+Mage::getSingleton("checkout/type_onepage")->getQuote()->collectTotals()->save();
+*/ 
+
+
+
         $cart = $this->_getCart();
         if ($cart->getQuote()->getItemsCount()) {
             $cart->init();

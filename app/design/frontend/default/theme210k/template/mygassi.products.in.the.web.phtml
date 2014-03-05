@@ -89,7 +89,16 @@ $_productCollection = Mage::getModel("catalog/product")
 						<?php echo $this->getReviewsSummaryHtml($_product) ?>
                     <?php endif; ?>
                     <?php if($_product->isSaleable()): ?>
-                        <button type="button" title="<?php echo $this->__('Add to Cart') ?>" class="button btn-cart" onclick="setLocation('<?php echo $this->getAddToCartUrl($_product) ?>')"><span><span><?php echo $this->__('Add to Cart') ?></span></span></button>
+                        <!--
+					javascript:setLocation('<?php echo $this->getAddToCartUrl($_product) ?>');
+			-->
+			<button 
+				type="button" 
+				title="<?php echo $this->__('Add to Cart') ?>" 
+				class="button btn-cart" 
+				onclick="">
+				<span><span><?php echo $this->__('Add to Cart') ?></span></span>
+			</button>
                     <?php else: ?>
                         <p class="availability out-of-stock"><span><?php echo $this->__('Out of stock') ?></span></p>
                     <?php endif; ?>
@@ -138,7 +147,19 @@ $_productCollection = Mage::getModel("catalog/product")
 					
 					<div class="actions">
 						<?php if($_product->isSaleable()): ?>
-							<button type="button" title="<?php echo $this->__('Add to Cart') ?>" class="button btn-cart" onclick="setLocation('<?php echo $this->getAddToCartUrl($_product) ?>')"><span><span><?php echo $this->__('Add to Cart') ?></span></span></button>
+							<!--
+								setLocation('<?php echo $this->getAddToCartUrl($_product) ?>')"
+							-->
+							<button 
+								type="button" 
+								title="<?php echo $this->__('Add to Cart') ?>" 
+								class="button btn-cart" 
+								onclick="
+									javascript:_gaq.push(['_trackEvent', 'In den Warenkorb', 'Homepage', '<?php print $this->getAddToCartUrl($_product);?>']);
+									javascript:self.location.href='<?php print $this->getAddToCartUrl($_product)?>';
+								">
+								<span><span><?php echo $this->__('Add to Cart') ?></span></span>
+							</button>
 						<?php else: ?>
 							<p class="availability out-of-stock"><span><?php echo $this->__('Out of stock') ?></span></p>
 						<?php endif; ?>

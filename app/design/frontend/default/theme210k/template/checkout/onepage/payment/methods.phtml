@@ -32,6 +32,9 @@
  */
 ?>
 
+
+
+<?php /**
 <dt>
 	<input 
 		type="radio" 
@@ -63,7 +66,7 @@
 
 <dd></dd>
 
-
+**/ ?>
 
 
 
@@ -85,9 +88,12 @@
 <?php else:
     foreach ($methods as $_method):
         $_code = $_method->getCode();
+		
+		/*
 		if("payone_wallet" === $_code){
 			continue;
 		}
+		*/
 ?>
     <dt>
     <?php if(!$oneMethod): ?>

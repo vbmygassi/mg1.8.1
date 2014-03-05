@@ -66,31 +66,21 @@ print <<<EOD
 EOD;
 
 
-$srcUW = $this->getSkinUrl() . "images/sofort-ueberweisung.gif";
-$srcPP ="https://www.paypalobjects.com/de_DE/i/bnr/bnr_nowAccepting_150x60.gif";
+// $srcPP ="https://www.paypalobjects.com/de_DE/i/bnr/bnr_nowAccepting_150x60.gif";
+$srcUW = $this->getSkinUrl() . "images/sofort-ueberweisung.png";
+$srcPP = $this->getSkinUrl() . "images/paypal.png";
+$srcAP = $this->getSkinUrl() . "images/appstore.png";
 print <<<EOD
 			<div class="logos">
+				<span class="appstore-logo">
+					<a href="https://itunes.apple.com/de/app/mygassi-die-spurnase-furs/id665036195?mt=8" target="_new"><img src="{$srcAP}"/></a>
+				</span><!-- appstore-logo -->
+				
 				<span class="sofort-logo">
-					<a 
-						onclick='javascript:window.open(
-							"https://www.sofort.com/ger-DE/kaeufer/su/online-zahlen-mit-sofort-ueberweisung/",
-							"sofort-uberweisung",
-							"width=740,height=420,left=0,top=0,location=no,status=yes,scrollbars=yes,resizable=yes"
-						); return false;' 
-						title='Sofortüberweisung' href='#'>
-						<img height="45" src="{$srcUW}"/>
-					</a>
+					<a href="https://www.sofort.com/ger-DE/kaeufer/su/online-zahlen-mit-sofort-ueberweisung/" target="_new"><img src="{$srcUW}"/></a>
 				</span><!-- sofort-logo -->
 				<span class="paypal-logo">
-					<a 
-						onclick='javascript:window.open(
-							"https://www.paypal.com/de/cgi-bin/webscr?cmd=xpt/Marketing/popup/OLCWhatIsPayPal-outside",
-							"paypal",
-							"width=740,height=420,left=0,top=0,location=no,status=yes,scrollbars=yes,resizable=yes"
-						); return false;' 
-						title='Paypal' href='#'>
-						<img height="45" src="{$srcPP}"/>
-					</a>
+					<a href="https://www.paypal.com/de/cgi-bin/webscr?cmd=xpt/Marketing/popup/OLCWhatIsPayPal-outside" target="_new"><img src="{$srcPP}"/></a>
 				</span><!-- paypal-logo -->
 			</div>
 		</div><!-- .row -->
@@ -121,3 +111,7 @@ EOD;
 	</div>
 </div>
 **/ ?>
+
+<script type="text/javascript">
+// _gaq.push(['_trackEvent', 'Page', 'Footer', 'Footer ausgeliefert']);
+</script>

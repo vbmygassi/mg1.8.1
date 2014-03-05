@@ -649,3 +649,8 @@
 }
 
 
+#search_mini_form
+{
+	display: none !important;
+	visible: hidden;
+}

@@ -39,8 +39,8 @@ $img1 = $this->getSkinUrl() . "images/slider_gross_2.jpg";
 $img2 = $this->getSkinUrl() . "images/slider_gross_3.jpg";
 $img3 = $this->getSkinUrl() . "images/banner-rabatt.jpg"; 
 $img4 = $this->getSkinUrl() . "images/banner-info.jpg"; 
-$banner1URL = Mage::getBaseUrl() . "productlist/";
-$banner2URL = Mage::getBaseUrl() . "productlist/";
+$banner1URL = 'javascript:_gaq.push([\'_trackEvent\', \'Rabatt\', \'Klick\', \''.Mage::getBaseUrl().'productlist/'.'\']);' . 'javascript:self.location.href=\''.Mage::getBaseUrl().'productlist/\'';
+$banner2URL = 'javascript:_gaq.push([\'_trackEvent\', \'Versandkostenfrei\', \'Klick\', \''.Mage::getBaseUrl().'productlist/'.'\']);' . 'javascript:self.location.href=\''.Mage::getBaseUrl().'productlist/\'';
 $grosseHundeURL = Mage::getBaseUrl() . "mygassi-snackbox-fur-grosse-hunde.html";
 $mittlereHundeURL = Mage::getBaseUrl() . "mygassi-snackbox-fur-mittlere-hunde.html";
 $kleineHundeURL = Mage::getBaseUrl() . "mygassi-snackbox-fur-kleine-hunde.html";
@@ -58,8 +58,7 @@ jQuery(document).ready(function(){
 	*/
 	jQuery("#camera_wrap").camera({
 		alignment: "topCenter",
-		height: "365px",
-		minHeight: "134px",
+		minHeight: "100px",
 		loader: false,
 		navigation: false,
 		fx: "scrollLeft",
