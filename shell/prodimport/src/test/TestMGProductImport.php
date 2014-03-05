@@ -1,6 +1,7 @@
 <?php date_default_timezone_set("Europe/Berlin"); 
 
 require_once("src/MGProductImport.php");
+require_once("src/MGProductImportSettings.php");
 
 class TestMGProductImport
 {
@@ -269,10 +270,10 @@ TestMGProductImport::testReadImportTimestamp();
 
 // TestMGProductImport::testDeleteCategories();
 // TestMGProductImport::testDeleteProducts();
-TestMGProductImport::testImportItems();
+// TestMGProductImport::testImportItems();
 // TestMGProductImport::testCleanImageCache();
-TestMGProductImport::testImportImages3();
-TestMGProductImport::testActivateImages();
+// TestMGProductImport::testImportImages3();
+// TestMGProductImport::testActivateImages();
 
 // TestMGProductImport::testSubmitEditedProducts();
 
