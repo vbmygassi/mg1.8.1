@@ -4,6 +4,13 @@ require_once(mageroot);
 
 Mage::app();
 
+// holded
+$coll = Mage::getModel("sales/order")->getCollection()->addAttributeToFilter("status", "holded"); 
+foreach($coll as $sale){
+	print_r($sale);
+}
+exit(1);
+
 $prod = Mage::getModel("catalog/product")->loadByAttribute("sku", "99988877755");
 $prod->load($prod->getId());
 print_r($prod);

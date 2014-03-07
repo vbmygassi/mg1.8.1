@@ -16,12 +16,8 @@ foreach($coll as $sale){
 	curl_setopt($ch, CURLOPT_TIMEOUT, 120);
 	curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-	curl_setopt($ch, CURLOPT_FILE, $fp);
-	curl_exec($ch);
+	$res = curl_exec($ch);
 	curl_close($ch);
-	fclose($fp);
-	$res = file_get_contents(RetMridPath . $sale->getIncrementId());
-	unlink(RetMridPath . $sale->getIncrementId());
 	switch($res){
 		case null:
 		case "":
@@ -35,9 +31,9 @@ foreach($coll as $sale){
 	$sale = $sale->load($sale->getId());
 	$flag = $sale->getStatus();
 	if(null !== $sale->getID()){
-		print "sale: " . $sale->getId() . " : " . $flag . "\n";
-		print "status:" . $sale->getStatus() . "\n";
-		print "state:" . $sale->getState() . "\n";
+		logger("sale: " . $sale->getId() . " : " . $flag);
+		logger("status:" . $sale->getStatus());
+		logger("state:" . $sale->getState());
 		$sale->setStatus("retoure")->save();
 		$sale->setState("processing", true, "Die Bestellung wird zurückgesendet.". $sale->getKarlieOrderId());
 		logger("Die Bestellung:" . $sale->getKarlieOrderId() . " wird zurückgesendet");

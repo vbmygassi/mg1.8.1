@@ -5,20 +5,32 @@ require_once("mygassi-logger.php");
 logger("Starting: mygassi-import-customer");
 
 // imports mage root of import target 
-include "/Users/vico/Workspace/MyGassiShop/app/Mage.php";
+include "/var/www/shop.mygassi.com/htdocs/app/Mage.php";
 Mage::app();
 
 // sets path of import 
-$path ="/Users/vico/Workspace/MyGassiShop/shell/customers/customer";
+$path ="/var/www/shop.mygassi.com/htdocs/shell/customers/customer";
 
 $indx = 0;
 while(true){
 	$target = $path . $indx;
 	print "target: " . $target . PHP_EOL;
 	$d = file_get_contents($target);
-	$customer = unserialize($d);
-	$customer->save();
-	print_r($customer->debug());
+	$data = unserialize($d);
+	if(null == $data){
+		break;
+	}
+	$customer = Mage::getModel("customer/customer");
+	$customer->setWebsiteId(1);
+	$customer->setData($data);
+	try{
+		print_r($customer->debug());
+		$customer->save();
+	}
+	catch(Mage_Customer_Exception $e){
+		print $e->getMessage();
+	}
+
 	$indx++;
 }
 

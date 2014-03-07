@@ -3,7 +3,6 @@
 require_once("mygassi-config.php");
 require_once("mygassi-logger.php");
 require_once("mygassi-send-email.php");
-
 require_once(mageroot);
 
 Mage::app();
@@ -54,8 +53,8 @@ function sendContainer($sales, $deletePDF)
 		$code = Mage::getSingleton("customer/group")->load($cgid)->getCustomerGroupCode();
 
 		if("General" != $code){
-			print $code . PHP_EOL;
-			print $cgid . PHP_EOL;
+			// print $code . PHP_EOL;
+			// print $cgid . PHP_EOL;
 			continue;
 		}
 		
@@ -109,9 +108,6 @@ function sendContainer($sales, $deletePDF)
 
 		// -->
 
-		
-
-
 		//////
 		// writes the invoice PDF document
 		exec(ExportInvoiceCommand . $sale->getIncrementId());
@@ -153,11 +149,13 @@ function sendContainer($sales, $deletePDF)
 	
 			// sends customer notification email 
 			foreach ($sale->getInvoiceCollection() as $invoice) {
-				try{ 
-					$invoice->sendEmail(); 
+				try{
+					// $res = $invoice->sendEmail(); 
+					// logger("Invoice sent to: " . $email . " : " . $res);
+					logger("Email NOT sent to:: " . $email);
 				}
 				catch(Exception $e){
-					logger("Could not sent Customer Notification Email: " . $e);
+					logger("Could not send Customer Notification Email: " . $e);
 				}
 			}
 		} 
@@ -234,8 +232,8 @@ function sendOrder($kvg_arr_order, $invoicePath, $retourePath)
 
 	// close cURL resource, and free up system resources
 	curl_close($handle);
-	echo $code . '<br />';
-	echo $response;
+	// echo $code . '<br />';
+	// echo $response;
 
 	return $response;	
 }

@@ -1,18 +1,17 @@
 <?php
-
 require_once("mygassi-config.php");
 require_once("mygassi-logger.php");
 require_once("mygassi-send-email.php");
 require_once(mageroot);
 
-// a running mage client 
+// runs that ruckurrruufsckglgrlrlrl 
 Mage::app();
 
 // logs the start
 logger("Starting: mygassi-check-parcels");
 
 // fills up notification email (administrative issue);
-EmailNotification::setSubject("Benachrichtigung über den MyGassi CRON Prozess Get Parcel ID");
+EmailNotification::setSubject("Benachrichtigung über den MyGassi CRON Prozess Get Parcel IDs");
 EmailNotification::add("<span style='color:black'>Der CRON Job Check Parcel ID startet.</span>");
 
 // selects sales (the ones that are referred to karlie)
@@ -33,21 +32,24 @@ foreach($sales as $sale){
 	// customer of current sale might be a guest
 	if(null === $customerID){ $customerID = "guest"; }
 	
-	// loads parcel id of the sale (from karlie)	
-	$message = exec(GetParcelIDCommand . $customerID . "_" . $orderID);
+	// loads parcel id of the sale (from karlie)
+	$message = "";
+	$res = exec(GetParcelIDCommand . $customerID . "_" . $orderID);
 
 	// fills up CRON notification email
 	$color = "green";
-	switch($message){
+
+	switch($res){
 		case "":
 		case "null":
 		case "parcelID: null":
 		case null:
 			$color = "red";
+			$message = " hat keine PaketID";		
 			break;
 	}
 	
-	EmailNotification::add("<span style='color:$color'>Bestellung: ".$customerID."_".$orderID." $message</span>");
+	EmailNotification::add("<span style='color:$color'>Bestellung: ".$customerID."_".$orderID.":".$res.":".$message."</span>");
 }
 
 // sends CRON notification email

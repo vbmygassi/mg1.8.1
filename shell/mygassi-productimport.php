@@ -105,8 +105,8 @@ function fetchProductAttributes($sku)
 $magicImportIDs = array();
 function writeProduct($product)
 {
-	print_r($product);
-	return;
+	// print_r($product);
+	// return;
 
 	/*
 	print '"';
@@ -730,7 +730,7 @@ $productContainer = array();
 /****
  * import settings
  */
-$args = array(
+$settings = array(
 	"offset" 	=> 0, 
 	"bulk" 		=> 1, 
 	"max" 		=> 500, 
@@ -743,4 +743,4 @@ $args = array(
  * fetches the next product
  * 
  */
-fetchNextProduct($args);
+fetchNextProduct($settings);

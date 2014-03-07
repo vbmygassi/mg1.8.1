@@ -253,7 +253,7 @@ class TestMGProductImport
 
 	static public function testActivateImages()
 	{
-		$res = MGProductImport::activateImagesByLabel("the1st");
+		$res = MGProductImport::activateImagesByLabel("app");
 	}
 }
 
@@ -272,8 +272,8 @@ TestMGProductImport::testReadImportTimestamp();
 // TestMGProductImport::testDeleteProducts();
 // TestMGProductImport::testImportItems();
 // TestMGProductImport::testCleanImageCache();
-// TestMGProductImport::testImportImages3();
-// TestMGProductImport::testActivateImages();
+TestMGProductImport::testImportImages3();
+TestMGProductImport::testActivateImages();
 
 // TestMGProductImport::testSubmitEditedProducts();
 

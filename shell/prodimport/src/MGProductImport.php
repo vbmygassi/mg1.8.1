@@ -849,7 +849,7 @@ class MGProductImport
 		}	
 		
 		// Imports image asset into magento
-		$label = "the1st";
+		$label = "app";
 		$target = Mage::getBaseDir("media") . DS . "import" . DS . $image;
 		
 
@@ -1202,7 +1202,7 @@ class MGProductImport
 				$prod = $prod->load($prod->getId());
 				$imagePath = "";
 				foreach($prod->getMediaGalleryImages() as $image){
-					if("the1st" === $image->getLabel()){ 
+					if("app" === $image->getLabel()){ 
 						$imagePath = $image->getPath();
 					}
 				}

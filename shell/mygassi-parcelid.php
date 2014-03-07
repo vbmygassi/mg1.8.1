@@ -8,11 +8,6 @@ Mage::app();
 logger("Starting: mygassi-parcelid");
 
 /**
- * sets up a new client
- */
-$client = Mage::getModel('codex_api/api');
-
-/**
  * reads packet id from input
  */
 $in = $argv[1]; 
@@ -22,24 +17,18 @@ if("" === $in){
 $temp = explode("_", $in);
 if(2 != count($temp)){
 	logger("usage: php mygassi-parcelid.php guest_10001");
-	print  "usage: php mygassi-parcelid.php guest_10001";
-	print "\n";
-	exit();
+	exit(1);
 }
 $customerID = $temp[0];
 $orderID = $temp[1];
 
 $target = ParcelTrackPath . $customerID . "_" . $orderID; 
 logger("fetching: " . $target);
-$fp = fopen(TempfilePath . $customerID . "_" . $orderID, "w");
 $ch = curl_init($target);
 curl_setopt($ch, CURLOPT_TIMEOUT, 120);
-curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-curl_setopt($ch, CURLOPT_FILE, $fp);
-curl_exec($ch);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+$parcelID = curl_exec($ch);
 curl_close($ch);
-fclose($fp);
 
 /**
  * selects sale
@@ -50,22 +39,17 @@ if(null === $sale){
 	exit(1);
 }
 
-/** 
- * reads curl result
- */
-$parcelID = file_get_contents(TempfilePath . $customerID . "_" . $orderID);
-unlink(TempfilePath . $customerID . "_" . $orderID);
-print "parcelID: " . $parcelID . "\n";
+logger("parcelID: " . $parcelID);
 switch($parcelID){
 	case null:
 	case "null":
 	case "[]":
-		logger("No ParcelID: " . $target);
+		logger("NO parcelID: " . $target);
 		logger("Done: mygassi-parcelid");	
-		exit();
+		exit(1);
 }
 // unlink(Tempfilepath . $target);
-//create shipment
+// init shipment
 /*
 $itemQty =  $sale->getItemsCollection()->count();
 $shipment = Mage::getModel('sales/service_order', $sale)->prepareShipment($itemQty);
@@ -135,6 +119,7 @@ if($sale->canShip()){
         	logger("Some exception while adding shipment " . $e->getMessage());
 	}
 }
+
 function getItemQtys(Mage_Sales_Model_Order $sale)
 {
 	$qty = array();
@@ -148,5 +133,7 @@ function getItemQtys(Mage_Sales_Model_Order $sale)
 	}
 	return $qty;
 }
+
 logger("Done: mygassi-parcelid");
+
 exit(1);

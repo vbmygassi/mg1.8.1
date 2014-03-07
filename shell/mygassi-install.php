@@ -9,11 +9,8 @@ Mage::app();
 
 logger("Starting: mygassi-install");
 
-$setup = new Mage_Eav_Model_Entity_Setup('core_setup');
-
-$setup->updateAttribute('customer_address','telephone','is_required', 0);
-
-exit(1);
+// $setup = new Mage_Eav_Model_Entity_Setup('core_setup');
+// $setup->updateAttribute('customer_address','telephone','is_required', 0);
 
 function addOrderState($args)
 {
@@ -49,7 +46,6 @@ function addOrderState($args)
 	$installer->endSetup();
 }
 
-/*
 addOrderState(
 	$args = array(
 		array(
@@ -93,11 +89,6 @@ addOrderState(
 			state  => "processing"
 		),
 		array(
-			status => "canceled",
-			label  => "Zahlung storniert",
-			state  => "processing"
-		),
-		array(
 			status => "refund",
 			label  => "Rückerstattet",
 			state  => "processing"
@@ -134,7 +125,8 @@ addOrderState(
 		) 
 	)
 );
-*/
+exit(1);
+
 
 $setup->addAttribute('customer', 'invoice_coupon', array(
 	'input'         => 'text',

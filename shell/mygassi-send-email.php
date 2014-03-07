@@ -28,6 +28,7 @@ class EmailNotification
 			$mail = new Zend_Mail("UTF-8");
 			$mail->setFrom("dev@mygassi.com", "MyGassi");
 			$mail->addTo("dev@mygassi.com", "Dev");
+			$mail->addTo("vberzsin@gmail.com", "Tha'is not dad");
 			$mail->setSubject(self::$subject);
 			$mail->setBodyHtml(self::$message); 
 			/*

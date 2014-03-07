@@ -1,0 +1,2 @@
+a:17:{s:9:"entity_id";s:2:"91";s:14:"entity_type_id";s:1:"2";s:16:"attribute_set_id";s:1:"0";s:12:"increment_id";N;s:9:"parent_id";s:2:"99";s:10:"created_at";s:19:"2014-01-28 16:53:48";s:10:"updated_at";s:19:"2014-01-28 16:53:48";s:9:"is_active";s:1:"1";s:9:"firstname";s:4:"test";s:8:"lastname";s:5:"again";s:4:"city";s:10:"Stadt Test";s:6:"region";s:6:"Bayern";s:8:"postcode";s:11:"01010101010";s:10:"country_id";s:2:"DE";s:9:"telephone";s:10:"0101010101";s:9:"region_id";s:2:"81";s:6:"street";s:12:"Strasse
+Test";}
